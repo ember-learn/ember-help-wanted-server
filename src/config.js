@@ -3,13 +3,16 @@ module.exports = {
     'emberjs',
     'ember-learn',
     'ember-cli', 
-    'ember-engines'
+    'ember-engines',
+    'typed-ember'
   ],
 
   labels: [
     'help wanted',
     'good for new contributors',
     'good first issue',
-    'hacktoberfest'
+    'hacktoberfest',
+    'Final Comment Period',
+    'Needs Champion'
   ]
 };

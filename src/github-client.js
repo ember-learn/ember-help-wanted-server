@@ -6,11 +6,6 @@ const {orgs, labels} = require('./config');
 const API_TOKEN = '787d14f949f1d780031860659b563c55eee59dff';
 const PAGE_SIZE = 100; // Github's max is 100
 
-// let rfcs = [
-//   { repo: 'emberjs/rfcs', labels: 'Final Comment Period' },
-//   { repo: 'emberjs/rfcs', labels: 'Needs Champion' }
-// ];
-
 let client;
 module.exports = function() {
   if (client) {
@@ -32,7 +27,7 @@ class GithubClient {
 
   buildQuery(label) {
     let orgQuery = orgs.map(org => `org:${org}`).join(' ');
-    return `${orgQuery} label:"${label}"`;
+    return `is:open ${orgQuery} label:"${label}"`;
   }
 
   async fetchIssuePage(label, page) {
