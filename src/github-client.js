@@ -5,6 +5,7 @@ const {orgs, labels} = require('./config');
 
 const API_TOKEN = '787d14f949f1d780031860659b563c55eee59dff';
 const PAGE_SIZE = 100; // Github's max is 100
+const MAX_PAGE_COUNT = 10; // Github's max record depth is 1000
 
 let client;
 module.exports = function() {
@@ -56,7 +57,7 @@ class GithubClient {
       allIssues.push(pageData.items);
   
       moreItems = pageData.total_count > (pageData.items.length * page);
-      underPageLimit = page < 10;
+      underPageLimit = page < MAX_PAGE_COUNT;
     }
   
     return allIssues;
