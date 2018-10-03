@@ -43,20 +43,20 @@ class GithubClient {
     });
     return response.data.items;
   }
-  
+
   async fetchAllIssues(label) {
     let page = 0;
     let moreItems = true;
     let underPageLimit = true;
     let allIssues = [];
-  
+
     while(moreItems && underPageLimit) {
       page++;
       let pageData = await this.fetchIssuePage(label, page);
-  
-      allIssues.push(pageData.items);
-  
-      moreItems = pageData.total_count > (pageData.items.length * page);
+
+      allIssues.push(pageData);
+
+      moreItems = pageData.total_count > (pageData.length * page);
       underPageLimit = page < MAX_PAGE_COUNT;
     }
   
@@ -65,11 +65,11 @@ class GithubClient {
 
   async fetchIssueSet() {
     const promises = labels.map(async (label) => {
-      return await this.fetchIssuePage(label, 1);
+      return this.fetchAllIssues(label);
     });
     let results = await Promise.all(promises);
 
-    return _.uniqWith(_.flatten(results), (a, b) => {
+    return _.uniqWith(_.flattenDeep(results), (a, b) => {
       return a.id === b.id;
     });
   }
