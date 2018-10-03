@@ -1,8 +1,10 @@
 const express = require('express');
 const _ = require('lodash');
 
+const getEnv = require('./environment');
+
 const app = express();
-const port = 3000;
+const port = getEnv('SERVER_PORT');
 
 class Server {
   constructor() {

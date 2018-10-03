@@ -1,6 +1,7 @@
 let getGithubClient = require('./github-client');
+let getEnv = require('./environment');
 
-const CACHE_UPDATE_INTERVAL = 60 * 1000;
+const CACHE_UPDATE_INTERVAL = getEnv('CACHE_UPDATE_INTERVAL');
 
 async function getAllIssues() {
   let client;

@@ -1,3 +1,6 @@
+// must be first
+require('dotenv').config();
+
 let server = require('./server');
 server.start();
 
