@@ -1,5 +1,6 @@
 const express = require('express');
 const _ = require('lodash');
+const cors = require('cors');
 
 const getEnv = require('./environment');
 
@@ -13,6 +14,9 @@ class Server {
   }
 
   start() {
+    app.use(cors({
+      origin: 'https://ember-help-wanted.netlify.com'
+    }));
     app.listen(port, () => console.log(`listening on port ${port}!`));
   }
 
