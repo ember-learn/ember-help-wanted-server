@@ -3,7 +3,7 @@ let typeMap = {
   CACHE_UPDATE_INTERVAL: Number
 };
 
-module.exports = function(key, defaultValue) {
+module.exports = function getEnv(key, defaultValue) {
   let value = process.env[key];
   if (value) {
     if (typeMap[key] === Number) {
@@ -12,7 +12,7 @@ module.exports = function(key, defaultValue) {
     return value;
   }
 
-  if (defaultValue) {
+  if (defaultValue !== undefined) {
     return defaultValue;
   }
 
