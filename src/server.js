@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 
 const getEnv = require('./environment');
 const filterIssues = require('./issue-filter');
 
 const app = express();
-const port = getEnv('PORT');
+const PORT = getEnv('PORT');
+const CORS_ORIGIN = getEnv('CORS_ORIGIN', null);
 
 class Server {
   constructor() {
@@ -13,7 +15,13 @@ class Server {
   }
 
   start() {
-    app.listen(port, () => console.log(`listening on port ${port}!`));
+    if (CORS_ORIGIN) {
+      app.use(cors({
+        origin: CORS_ORIGIN
+      }));
+    }
+
+    app.listen(PORT, () => console.log(`listening on port ${PORT}!`));
   }
 
   initializeRoutes() {
