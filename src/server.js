@@ -4,7 +4,7 @@ const getEnv = require('./environment');
 const filterIssues = require('./issue-filter');
 
 const app = express();
-const port = getEnv('SERVER_PORT');
+const port = getEnv('PORT');
 
 class Server {
   constructor() {
