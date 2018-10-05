@@ -10,17 +10,20 @@ const CORS_ORIGIN = getEnv('CORS_ORIGIN', null);
 
 class Server {
   constructor() {
-    this.issueCache = [];
-    this.initializeRoutes();
+	this.issueCache = [];
+	this.configureMiddleware();
+	this.initializeRoutes();
   }
 
-  start() {
+  configureMiddleware() {
     if (CORS_ORIGIN) {
       app.use(cors({
         origin: CORS_ORIGIN
       }));
     }
+  }
 
+  start() {
     app.listen(PORT, () => console.log(`listening on port ${PORT}!`));
   }
 
