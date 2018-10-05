@@ -25,7 +25,7 @@ let learning = [
 let community = [
   { repo: 'typed-ember/ember-cli-typescript', labels: 'help wanted' },
   { repo: 'typed-ember/ember-cli-typescript', labels: 'good first issue' },
-  { repo: 'ember-engines/ember-engines', labels: 'help wanted' }
+  { repo: 'ember-engines/ember-engines', labels: 'help wanted' },
   { repo: 'ember-cli/ember-twiddle', labels: 'help wanted' },
   { repo: 'ember-cli/ember-twiddle', labels: 'good first issue' }
 ];
