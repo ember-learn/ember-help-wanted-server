@@ -7,7 +7,8 @@ module.exports = {
     'eslint:recommended'
   ],
   env: {
-    node: true
+    node: true,
+    es6: true,
   },
   rules: {
     'no-console': 0
