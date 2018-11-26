@@ -1,25 +1,30 @@
 const _ = require('lodash');
 
 let core = [
-  { repo: 'emberjs/ember.js', labels: 'Help Wanted' },
-  { repo: 'emberjs/ember.js', labels: 'Good for New Contributors' },
-  { repo: 'emberjs/data', labels: 'Good for New Contributors' },
   { repo: 'ember-cli/ember-cli', labels: 'good first issue' },
-  { repo: 'emberjs/ember-inspector', labels: 'help wanted' },
+  { repo: 'emberjs/data', labels: 'Good for New Contributors' },
+  { repo: 'emberjs/ember-inspector', labels: 'DecEmber' },
   { repo: 'emberjs/ember-inspector', labels: 'good for new contributors' },
-  { repo: 'emberjs/website', labels: 'help wanted' },
-  { repo: 'emberjs/website', labels: 'good first issue' },
-  { repo: 'emberjs/ember-test-helpers', labels: 'beginner-friendly' },
-  { repo: 'emberjs/ember-optional-features', labels: 'help wanted' },
+  { repo: 'emberjs/ember-inspector', labels: 'help wanted' },
+  { repo: 'emberjs/ember-optional-features', labels: 'DecEmber' },
   { repo: 'emberjs/ember-optional-features', labels: 'good first issue' },
+  { repo: 'emberjs/ember-optional-features', labels: 'help wanted' },
+  { repo: 'emberjs/ember-test-helpers', labels: 'beginner-friendly' },
+  { repo: 'emberjs/ember.js', labels: 'DecEmber' },
+  { repo: 'emberjs/ember.js', labels: 'Good for New Contributors' },
+  { repo: 'emberjs/ember.js', labels: 'Help Wanted' },
+  { repo: 'emberjs/website', labels: 'DecEmber' },
+  { repo: 'emberjs/website', labels: 'good first issue' },
   { repo: 'emberjs/website', labels: 'help wanted' },
-  { repo: 'emberjs/website', labels: 'good first issue' }
 ];
 
 let learning = [
+  { repo: 'ember-learn/ember-styleguide', labels: 'DecEmber' },
   { repo: 'ember-learn/ember-styleguide', labels: 'help wanted :sos:' },
-  { repo: 'ember-learn/guides-source', labels: 'help wanted' },
+  { repo: 'ember-learn/guides-app', labels: 'DecEmber' },
   { repo: 'ember-learn/guides-app', labels: 'help wanted' },
+  { repo: 'ember-learn/guides-source', labels: 'DecEmber' },
+  { repo: 'ember-learn/guides-source', labels: 'help wanted' },
 ];
 
 let community = [
