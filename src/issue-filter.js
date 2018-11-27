@@ -10,7 +10,6 @@ let core = [
   { repo: 'emberjs/ember-test-helpers', labels: 'beginner-friendly' },
   { repo: 'emberjs/ember.js', labels: 'Good for New Contributors' },
   { repo: 'emberjs/ember.js', labels: 'Help Wanted' },
-  { repo: 'emberjs/website', labels: 'DecEmber' },
   { repo: 'emberjs/website', labels: 'good first issue' },
   { repo: 'emberjs/website', labels: 'help wanted' },
 ];
