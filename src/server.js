@@ -17,7 +17,20 @@ class Server {
   }
 
   configureMiddleware() {
-    if (CORS_ORIGIN) {
+    /**
+     * This will confirgure Cross Orign Resource Sharing (CORS) on the express server
+     * if either CORS_ORIGIN or CORS_ALLOW_PATTERN are set.
+     *
+     * CORS_ALLOW_PATTERN will be passed into String.prototype.match() and matched against the
+     * origin of the incoming request. If it matches then cors will be turned on for this request.
+     *
+     * If the pattern matching fails it will then do a === comparison on the request's
+     * origain against the CORS_ORIGIN env variable. If they match then it will turn on
+     * CORS for this request
+     *
+     * This setup allows both CORS_ORIGIN and CORS_ALLOW_PATTERN to be optional
+     */
+    if (CORS_ORIGIN || CORS_ALLOW_PATTERN) {
       app.use(cors({
         origin: function (origin, callback) {
           if(CORS_ALLOW_PATTERN) {
@@ -26,7 +39,7 @@ class Server {
             }
           }
 
-          if(origin === CORS_ORIGIN) {
+          if(CORS_ORIGIN && origin === CORS_ORIGIN) {
             return callback(null, true);
           }
 
