@@ -1,18 +1,20 @@
 module.exports = {
   orgs: [
-    'emberjs',
-    'ember-learn',
-    'ember-cli', 
+    'ember-cli',
+    'ember-data',
     'ember-engines',
-    'typed-ember'
+    'ember-learn',
+    'emberjs',
+    'typed-ember',
   ],
 
   labels: [
-    'help wanted',
-    'good for new contributors',
-    'good first issue',
-    'hacktoberfest',
+    'DecEmber',
     'Final Comment Period',
-    'Needs Champion'
+    'good first issue',
+    'good for new contributors',
+    'hacktoberfest',
+    'help wanted',
+    'Needs Champion',
   ]
 };
