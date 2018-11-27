@@ -3,14 +3,11 @@ const _ = require('lodash');
 let core = [
   { repo: 'ember-cli/ember-cli', labels: 'good first issue' },
   { repo: 'emberjs/data', labels: 'Good for New Contributors' },
-  { repo: 'emberjs/ember-inspector', labels: 'DecEmber' },
   { repo: 'emberjs/ember-inspector', labels: 'good for new contributors' },
   { repo: 'emberjs/ember-inspector', labels: 'help wanted' },
-  { repo: 'emberjs/ember-optional-features', labels: 'DecEmber' },
   { repo: 'emberjs/ember-optional-features', labels: 'good first issue' },
   { repo: 'emberjs/ember-optional-features', labels: 'help wanted' },
   { repo: 'emberjs/ember-test-helpers', labels: 'beginner-friendly' },
-  { repo: 'emberjs/ember.js', labels: 'DecEmber' },
   { repo: 'emberjs/ember.js', labels: 'Good for New Contributors' },
   { repo: 'emberjs/ember.js', labels: 'Help Wanted' },
   { repo: 'emberjs/website', labels: 'DecEmber' },
@@ -25,6 +22,9 @@ let learning = [
   { repo: 'ember-learn/guides-app', labels: 'help wanted' },
   { repo: 'ember-learn/guides-source', labels: 'DecEmber' },
   { repo: 'ember-learn/guides-source', labels: 'help wanted' },
+  { repo: 'ember-learn/ember-website', labels: 'help wanted' },
+  { repo: 'ember-learn/ember-website', labels: 'DecEmber' },
+  { repo: 'ember-learn/ember-website', labels: 'good first issue' },
 ];
 
 let community = [
