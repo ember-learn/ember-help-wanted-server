@@ -9,29 +9,34 @@ let core = [
   { repo: 'emberjs/ember-optional-features', labels: 'help wanted' },
   { repo: 'emberjs/ember-test-helpers', labels: 'beginner-friendly' },
   { repo: 'emberjs/ember.js', labels: 'Good for New Contributors' },
-  { repo: 'emberjs/ember.js', labels: 'Help Wanted' },
-  { repo: 'emberjs/website', labels: 'good first issue' },
-  { repo: 'emberjs/website', labels: 'help wanted' },
+  { repo: 'emberjs/ember.js', labels: 'Help Wanted' }
 ];
 
 let learning = [
+  { repo: 'ember-learn/builds', labels: 'DecEmber'},
+  { repo: 'ember-learn/cli-guides', labels: 'DecEmber'},
+  { repo: 'ember-learn/contact-book', labels: 'DecEmber'},
+  { repo: 'ember-learn/ember-help-wanted', labels: 'DecEmber' },
+  { repo: 'ember-learn/ember-help-wanted-server', labels: 'DecEmber' },
   { repo: 'ember-learn/ember-styleguide', labels: 'DecEmber' },
   { repo: 'ember-learn/ember-styleguide', labels: 'help wanted :sos:' },
+  { repo: 'ember-learn/ember-website', labels: 'DecEmber' },
+  { repo: 'ember-learn/ember-website', labels: 'good first issue' },
+  { repo: 'ember-learn/ember-website', labels: 'help wanted' },
   { repo: 'ember-learn/guides-app', labels: 'DecEmber' },
   { repo: 'ember-learn/guides-app', labels: 'help wanted' },
   { repo: 'ember-learn/guides-source', labels: 'DecEmber' },
   { repo: 'ember-learn/guides-source', labels: 'help wanted' },
-  { repo: 'ember-learn/ember-website', labels: 'help wanted' },
-  { repo: 'ember-learn/ember-website', labels: 'DecEmber' },
-  { repo: 'ember-learn/ember-website', labels: 'good first issue' },
+  { repo: 'ember-learn/statusboard', labels: 'DecEmber'},
+  { repo: 'ember-learn/tutorials', labels: 'DecEmber'}
 ];
 
 let community = [
-  { repo: 'typed-ember/ember-cli-typescript', labels: 'help wanted' },
-  { repo: 'typed-ember/ember-cli-typescript', labels: 'good first issue' },
-  { repo: 'ember-engines/ember-engines', labels: 'help wanted' },
+  { repo: 'ember-cli/ember-twiddle', labels: 'good first issue' },
   { repo: 'ember-cli/ember-twiddle', labels: 'help wanted' },
-  { repo: 'ember-cli/ember-twiddle', labels: 'good first issue' }
+  { repo: 'ember-engines/ember-engines', labels: 'help wanted' },
+  { repo: 'typed-ember/ember-cli-typescript', labels: 'good first issue' },
+  { repo: 'typed-ember/ember-cli-typescript', labels: 'help wanted' }
 ];
 
 let rfcs = [
@@ -40,8 +45,8 @@ let rfcs = [
 ];
 
 let emberHelpWanted = [
-  { repo: 'ember-learn/ember-help-wanted', labels: 'help wanted' },
-  { repo: 'ember-learn/ember-help-wanted', labels: 'good first issue' }
+  { repo: 'ember-learn/ember-help-wanted', labels: 'good first issue' },
+  { repo: 'ember-learn/ember-help-wanted', labels: 'help wanted' }
 ];
 
 let allFilters = { core, learning, community, rfcs, emberHelpWanted };
