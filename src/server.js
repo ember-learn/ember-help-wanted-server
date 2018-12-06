@@ -34,7 +34,7 @@ class Server {
       app.use(cors({
         origin: function (origin, callback) {
           if(CORS_ALLOW_PATTERN) {
-            if(origin.match(CORS_ALLOW_PATTERN)) {
+            if(origin && origin.match(CORS_ALLOW_PATTERN)) {
               return callback(null, true);
             }
           }
