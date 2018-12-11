@@ -13,10 +13,10 @@ let core = [
 ];
 
 let learning = [
-  { repo: 'ember-learn/ember-api-docs', labels: 'help wanted' },
   { repo: 'ember-learn/builds', labels: 'DecEmber'},
   { repo: 'ember-learn/cli-guides', labels: 'DecEmber'},
   { repo: 'ember-learn/contact-book', labels: 'DecEmber'},
+  { repo: 'ember-learn/ember-api-docs', labels: 'help wanted' },
   { repo: 'ember-learn/ember-help-wanted', labels: 'DecEmber' },
   { repo: 'ember-learn/ember-help-wanted-server', labels: 'DecEmber' },
   { repo: 'ember-learn/ember-styleguide', labels: 'DecEmber' },
