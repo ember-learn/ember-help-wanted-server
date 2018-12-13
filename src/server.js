@@ -33,13 +33,17 @@ class Server {
     if (CORS_ORIGIN || CORS_ALLOW_PATTERN) {
       app.use(cors({
         origin: function (origin, callback) {
-          if(CORS_ALLOW_PATTERN) {
-            if(origin && origin.match(CORS_ALLOW_PATTERN)) {
-              return callback(null, true);
-            }
+          // if origin is not defined then we are not in a CORS situation and by
+          // the spec we should allow this request
+          if (!origin) {
+            callback(null, true);
           }
 
-          if(CORS_ORIGIN && origin === CORS_ORIGIN) {
+          if(CORS_ALLOW_PATTERN && origin.match(CORS_ALLOW_PATTERN)) {
+            return callback(null, true);
+          }
+
+          if(origin === CORS_ORIGIN) {
             return callback(null, true);
           }
 
