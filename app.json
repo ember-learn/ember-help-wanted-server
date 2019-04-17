@@ -1,0 +1,33 @@
+{
+  "addons": [
+    "logentries"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "CACHE_UPDATE_INTERVAL": {
+      "required": true
+    },
+    "CORS_ALLOW_PATTERN": {
+      "required": true
+    },
+    "CORS_ORIGIN": {
+      "required": true
+    },
+    "GITHUB_API_TOKEN": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "ember-help-wanted-server",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
