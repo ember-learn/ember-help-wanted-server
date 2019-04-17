@@ -45,6 +45,15 @@ class GithubClient {
     return response.data.items;
   }
 
+  async fetchAllRepos() {
+    let query = 'user:ember-learn+NOT+builds+NOT+statusboard+help-wanted-issues:>0+archived:false'
+
+    let response = await octokit.search.repos({
+      q: query,
+    });
+    return response.data.items;
+  }
+
   async fetchAllIssues(label) {
     let page = 0;
     let moreItems = true;

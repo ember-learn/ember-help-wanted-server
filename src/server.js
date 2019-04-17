@@ -11,6 +11,7 @@ const CORS_ALLOW_PATTERN = getEnv('CORS_ALLOW_PATTERN', null);
 
 class Server {
   constructor() {
+    this.repoCache = [];
     this.issueCache = [];
     this.configureMiddleware();
     this.initializeRoutes();
@@ -58,6 +59,9 @@ class Server {
   }
 
   initializeRoutes() {
+    app.get('/github-repositories', (req, res) => {
+      res.json(this.repoCache);
+    });
     app.get('/github-issues', (req, res) => {
       let group = req.query.group;
       let results = filterIssues(this.issueCache, group);
@@ -65,8 +69,9 @@ class Server {
     });
   }
 
-  setCache(newCache) {
-    this.issueCache = newCache;
+  setCache(issueCache, repoCache) {
+    this.issueCache = issueCache;
+    this.repoCache = repoCache;
   }
 }
 
