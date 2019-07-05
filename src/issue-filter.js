@@ -29,7 +29,8 @@ let learning = [
   { repo: 'ember-learn/guides-source', labels: 'DecEmber' },
   { repo: 'ember-learn/guides-source', labels: 'help wanted' },
   { repo: 'ember-learn/statusboard', labels: 'DecEmber'},
-  { repo: 'ember-learn/tutorials', labels: 'DecEmber'}
+  { repo: 'ember-learn/tutorials', labels: 'DecEmber'},
+  { repo: 'ember-learn/deprecation-app', labels: 'help wanted' }
 ];
 
 let community = [
