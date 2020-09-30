@@ -217,7 +217,7 @@ let octane = [
 
 let allFilters = { core, learning, community, rfcs, emberHelpWanted, octane };
 
-function getRepo(repositoryUrl) {
+function getRepositoryName(repositoryUrl) {
   if (!repositoryUrl) {
     return;
   }
@@ -235,7 +235,7 @@ function filterIssues(issues, group) {
     let issueLabels = issue.labels.map(label => label.name.toLowerCase());
     return _.some(groupFilters, (filter) => {
       let matchesLabel = _.includes(issueLabels, filter.labels.toLowerCase());
-      let matchesRepo = getRepo(issue.repository_url) === filter.repo;
+      let matchesRepo = getRepositoryName(issue.repository_url) === filter.repo;
 
       return matchesLabel && matchesRepo;
     });
@@ -243,4 +243,4 @@ function filterIssues(issues, group) {
 }
 
 module.exports = filterIssues;
-module.exports.getRepo = getRepo;
+module.exports.getRepositoryName = getRepositoryName;
