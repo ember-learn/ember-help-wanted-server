@@ -201,16 +201,16 @@ let octane = [
   { repo: 'ember-cli/ember-cli-normalize-entity-name', labels: 'octane' },
   { repo: 'emberjs/ember-map-with-default', labels: 'octane' },
   { repo: 'ember-cli/ember-cli-get-component-path-option', labels: 'octane' },
-  { repos: 'ember-cli/broccoli-amd-funnel', labels: 'octane' },
-  { repos: 'ember-learn/gh-team-copy', labels: 'octane' },
-  { repos: 'emberjs/ember-map-polyfill', labels: 'octane' },
-  { repos: 'emberjs/ember-record-extension', labels: 'octane' },
-  { repos: 'ember-cli/create-ember-addon', labels: 'octane' },
-  { repos: 'ember-cli/broccoli-funnel-reducer', labels: 'octane' },
-  { repos: 'ember-learn/ember-cli-addon-docs-esdoc', labels: 'octane' },
-  { repos: 'ember-cli/broccoli-brocfile-loader', labels: 'octane' },
-  { repos: 'ember-cli/app-blueprint-test', labels: 'octane' },
-  { repos: 'ember-cli/ember-cli-path-utils', labels: 'octane' }
+  { repo: 'ember-cli/broccoli-amd-funnel', labels: 'octane' },
+  { repo: 'ember-learn/gh-team-copy', labels: 'octane' },
+  { repo: 'emberjs/ember-map-polyfill', labels: 'octane' },
+  { repo: 'emberjs/ember-record-extension', labels: 'octane' },
+  { repo: 'ember-cli/create-ember-addon', labels: 'octane' },
+  { repo: 'ember-cli/broccoli-funnel-reducer', labels: 'octane' },
+  { repo: 'ember-learn/ember-cli-addon-docs-esdoc', labels: 'octane' },
+  { repo: 'ember-cli/broccoli-brocfile-loader', labels: 'octane' },
+  { repo: 'ember-cli/app-blueprint-test', labels: 'octane' },
+  { repo: 'ember-cli/ember-cli-path-utils', labels: 'octane' }
 ]
 
 let allFilters = { core, learning, community, rfcs, emberHelpWanted, octane };
