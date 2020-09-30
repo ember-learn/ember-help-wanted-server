@@ -228,8 +228,8 @@ function getRepositoryName(repositoryUrl) {
   return repositoryName;
 }
 
-function filterIssues(issues, group) {
-  let groupFilters = allFilters[group];
+function filterIssues(issues, groupName) {
+  let groupFilters = allFilters[groupName];
 
   return issues.filter((issue) => {
     let issueLabels = issue.labels.map(label => label.name.toLowerCase());

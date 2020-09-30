@@ -62,9 +62,11 @@ class Server {
     app.get('/github-repositories', (req, res) => {
       res.json(this.repoCache);
     });
+
     app.get('/github-issues', (req, res) => {
-      let group = req.query.group;
-      let results = filterIssues(this.issueCache, group);
+      const groupName = req.query.group;
+      const results = filterIssues(this.issueCache, groupName);
+
       res.json(results);
     });
   }
