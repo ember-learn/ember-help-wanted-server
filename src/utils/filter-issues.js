@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 let core = [
   { repo: 'ember-cli/ember-cli', labels: 'good first issue' },
   { repo: 'emberjs/data', labels: 'Good for New Contributors' },
@@ -203,35 +201,57 @@ let octane = [
   { repo: 'ember-cli/ember-cli-normalize-entity-name', labels: 'octane' },
   { repo: 'emberjs/ember-map-with-default', labels: 'octane' },
   { repo: 'ember-cli/ember-cli-get-component-path-option', labels: 'octane' },
-  { repos: 'ember-cli/broccoli-amd-funnel', labels: 'octane' },
-  { repos: 'ember-learn/gh-team-copy', labels: 'octane' },
-  { repos: 'emberjs/ember-map-polyfill', labels: 'octane' },
-  { repos: 'emberjs/ember-record-extension', labels: 'octane' },
-  { repos: 'ember-cli/create-ember-addon', labels: 'octane' },
-  { repos: 'ember-cli/broccoli-funnel-reducer', labels: 'octane' },
-  { repos: 'ember-learn/ember-cli-addon-docs-esdoc', labels: 'octane' },
-  { repos: 'ember-cli/broccoli-brocfile-loader', labels: 'octane' },
-  { repos: 'ember-cli/app-blueprint-test', labels: 'octane' },
-  { repos: 'ember-cli/ember-cli-path-utils', labels: 'octane' }
+  { repo: 'ember-cli/broccoli-amd-funnel', labels: 'octane' },
+  { repo: 'ember-learn/gh-team-copy', labels: 'octane' },
+  { repo: 'emberjs/ember-map-polyfill', labels: 'octane' },
+  { repo: 'emberjs/ember-record-extension', labels: 'octane' },
+  { repo: 'ember-cli/create-ember-addon', labels: 'octane' },
+  { repo: 'ember-cli/broccoli-funnel-reducer', labels: 'octane' },
+  { repo: 'ember-learn/ember-cli-addon-docs-esdoc', labels: 'octane' },
+  { repo: 'ember-cli/broccoli-brocfile-loader', labels: 'octane' },
+  { repo: 'ember-cli/app-blueprint-test', labels: 'octane' },
+  { repo: 'ember-cli/ember-cli-path-utils', labels: 'octane' }
 ]
 
 let allFilters = { core, learning, community, rfcs, emberHelpWanted, octane };
 
-function getRepo(issue) {
-  // Example: "https://api.github.com/repos/ember-learn/guides-source"
-  let parts = issue.repository_url.split('/');
-  return `${parts[4]}/${parts[5]}`;
+function getRepositoryName(repositoryUrl) {
+  if (!repositoryUrl) {
+    return;
+  }
+
+  const API_URL = 'https://api.github.com/repos/';
+  const repositoryName = repositoryUrl.replace(API_URL, '');
+
+  return repositoryName;
 }
 
-module.exports = function filterIssues(issues, group) {
-  let groupFilters = allFilters[group];
+function filterIssues(issues, groupName) {
+  if (!issues) {
+    return [];
+  }
 
-  return issues.filter((issue) => {
-    let issueLabels = issue.labels.map(label => label.name.toLowerCase());
-    return _.some(groupFilters, (filter) => {
-      let matchesLabel = _.includes(issueLabels, filter.labels.toLowerCase());
-      let matchesRepo = getRepo(issue) === filter.repo;
-      return matchesLabel && matchesRepo;
+  const filters = allFilters[groupName];
+
+  if (!filters) {
+    return [];
+  }
+
+  return issues.filter(issue => {
+    const repositoryName = getRepositoryName(issue.repository_url);
+    const issueLabels = issue.labels.map(({ name }) => name.toLowerCase());
+
+    const match = filters.find(({ repo, labels }) => {
+      const matchesRepositoryName = repo === repositoryName;
+      const matchesLabel = issueLabels.includes(labels.toLowerCase());
+
+      return matchesRepositoryName && matchesLabel;
     });
+    const matchFound = !!match;
+
+    return matchFound;
   });
-};
+}
+
+module.exports = filterIssues;
+module.exports.getRepositoryName = getRepositoryName;

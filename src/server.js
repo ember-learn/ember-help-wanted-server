@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const getEnv = require('./environment');
-const filterIssues = require('./issue-filter');
+const filterIssues = require('./utils/filter-issues');
 
 const app = express();
 const PORT = getEnv('PORT');
@@ -62,9 +62,11 @@ class Server {
     app.get('/github-repositories', (req, res) => {
       res.json(this.repoCache);
     });
+
     app.get('/github-issues', (req, res) => {
-      let group = req.query.group;
-      let results = filterIssues(this.issueCache, group);
+      const groupName = req.query.group;
+      const results = filterIssues(this.issueCache, groupName);
+
       res.json(results);
     });
   }
