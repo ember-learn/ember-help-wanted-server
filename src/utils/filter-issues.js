@@ -229,11 +229,19 @@ function getRepositoryName(repositoryUrl) {
 }
 
 function filterIssues(issues, groupName) {
-  let groupFilters = allFilters[groupName];
+  if (!issues) {
+    return [];
+  }
+
+  const filters = allFilters[groupName];
+
+  if (!filters) {
+    return [];
+  }
 
   return issues.filter((issue) => {
     let issueLabels = issue.labels.map(label => label.name.toLowerCase());
-    return _.some(groupFilters, (filter) => {
+    return _.some(filters, (filter) => {
       let matchesLabel = _.includes(issueLabels, filter.labels.toLowerCase());
       let matchesRepo = getRepositoryName(issue.repository_url) === filter.repo;
 
