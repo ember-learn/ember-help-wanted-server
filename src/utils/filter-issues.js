@@ -217,21 +217,28 @@ let octane = [
 
 let allFilters = { core, learning, community, rfcs, emberHelpWanted, octane };
 
-function getRepo(issue) {
-  // Example: "https://api.github.com/repos/ember-learn/guides-source"
-  let parts = issue.repository_url.split('/');
+function getRepo(repositoryUrl) {
+  if (!repositoryUrl) {
+    return;
+  }
+
+  let parts = repositoryUrl.split('/');
   return `${parts[4]}/${parts[5]}`;
 }
 
-module.exports = function filterIssues(issues, group) {
+function filterIssues(issues, group) {
   let groupFilters = allFilters[group];
 
   return issues.filter((issue) => {
     let issueLabels = issue.labels.map(label => label.name.toLowerCase());
     return _.some(groupFilters, (filter) => {
       let matchesLabel = _.includes(issueLabels, filter.labels.toLowerCase());
-      let matchesRepo = getRepo(issue) === filter.repo;
+      let matchesRepo = getRepo(issue.repository_url) === filter.repo;
+
       return matchesLabel && matchesRepo;
     });
   });
 }
+
+module.exports = filterIssues;
+module.exports.getRepo = getRepo;
