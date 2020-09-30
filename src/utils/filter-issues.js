@@ -222,8 +222,10 @@ function getRepo(repositoryUrl) {
     return;
   }
 
-  let parts = repositoryUrl.split('/');
-  return `${parts[4]}/${parts[5]}`;
+  const API_URL = 'https://api.github.com/repos/';
+  const repositoryName = repositoryUrl.replace(API_URL, '');
+
+  return repositoryName;
 }
 
 function filterIssues(issues, group) {
