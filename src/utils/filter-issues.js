@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 let core = [
   { repo: 'ember-cli/ember-cli', labels: 'good first issue' },
   { repo: 'emberjs/data', labels: 'Good for New Contributors' },
@@ -239,14 +237,19 @@ function filterIssues(issues, groupName) {
     return [];
   }
 
-  return issues.filter((issue) => {
-    let issueLabels = issue.labels.map(label => label.name.toLowerCase());
-    return _.some(filters, (filter) => {
-      let matchesLabel = _.includes(issueLabels, filter.labels.toLowerCase());
-      let matchesRepo = getRepositoryName(issue.repository_url) === filter.repo;
+  return issues.filter(issue => {
+    const repositoryName = getRepositoryName(issue.repository_url);
+    const issueLabels = issue.labels.map(({ name }) => name.toLowerCase());
 
-      return matchesLabel && matchesRepo;
+    const match = filters.find(({ repo, labels }) => {
+      const matchesRepositoryName = repo === repositoryName;
+      const matchesLabel = issueLabels.includes(labels.toLowerCase());
+
+      return matchesRepositoryName && matchesLabel;
     });
+    const matchFound = !!match;
+
+    return matchFound;
   });
 }
 
