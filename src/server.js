@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const getEnv = require('./environment');
-const filterIssues = require('./issue-filter');
+const filterIssues = require('./utils/filter-issues');
 
 const app = express();
 const PORT = getEnv('PORT');

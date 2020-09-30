@@ -234,4 +234,4 @@ module.exports = function filterIssues(issues, group) {
       return matchesLabel && matchesRepo;
     });
   });
-};
+}
