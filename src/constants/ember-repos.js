@@ -1,18 +1,17 @@
 const adopted_ember_addons = require('./repos/adopted-ember-addons');
+const ember_cli = require('./repos/ember-cli');
 const ember_learn = require('./repos/ember-learn');
 const emberjs = require('./repos/emberjs');
 
 const community = [
   ...adopted_ember_addons,
-  { name: 'ember-cli/ember-twiddle', label: 'good first issue' },
-  { name: 'ember-cli/ember-twiddle', label: 'help wanted' },
   { name: 'ember-engines/ember-engines', label: 'help wanted' },
   { name: 'typed-ember/ember-cli-typescript', label: 'good first issue' },
   { name: 'typed-ember/ember-cli-typescript', label: 'help wanted' },
 ];
 
 const core = [
-  { name: 'ember-cli/ember-cli', label: 'good first issue' },
+  ...ember_cli,
   ...emberjs,
 ];
 

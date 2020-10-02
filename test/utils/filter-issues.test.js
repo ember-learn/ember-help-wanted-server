@@ -52,10 +52,7 @@ describe('utils/filter-issues', function() {
 
       assert.deepEqual(
         filteredIssues.map(({ url }) => url),
-        [
-          'https://api.github.com/repos/ember-cli/ember-twiddle/issues/725',
-          'https://api.github.com/repos/ember-cli/ember-twiddle/issues/108',
-        ]
+        []
       );
     });
 
@@ -71,6 +68,8 @@ describe('utils/filter-issues', function() {
         [
           'https://api.github.com/repos/ember-cli/ember-cli/issues/6713',
           'https://api.github.com/repos/emberjs/ember-inspector/issues/947',
+          'https://api.github.com/repos/ember-cli/ember-twiddle/issues/725',
+          'https://api.github.com/repos/ember-cli/ember-twiddle/issues/108',
           'https://api.github.com/repos/ember-cli/ember-cli/issues/7505',
         ]
       );
