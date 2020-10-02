@@ -26,9 +26,9 @@ function filterIssues(issues, groupName) {
     const repositoryName = getRepositoryName(issue.repository_url);
     const issueLabels = issue.labels.map(({ name }) => name.toLowerCase());
 
-    const match = filters.find(({ repo, labels }) => {
-      const matchesRepositoryName = repo === repositoryName;
-      const matchesLabel = issueLabels.includes(labels.toLowerCase());
+    const match = filters.find(({ name, label }) => {
+      const matchesRepositoryName = name === repositoryName;
+      const matchesLabel = issueLabels.includes(label.toLowerCase());
 
       return matchesRepositoryName && matchesLabel;
     });
