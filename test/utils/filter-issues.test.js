@@ -123,9 +123,7 @@ describe('utils/filter-issues', function() {
 
       assert.deepEqual(
         filteredIssues.map(({ url }) => url),
-        [
-          'https://api.github.com/repos/ember-learn/guides-source/issues/1539',
-        ]
+        []
       );
     });
   });
