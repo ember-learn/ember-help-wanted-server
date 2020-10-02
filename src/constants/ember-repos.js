@@ -215,11 +215,17 @@ const rfcs = [
   { name: 'emberjs/rfcs', label: 'Needs Champion' },
 ];
 
-module.exports.allFilters = {
-  community,
-  core,
-  emberHelpWanted,
-  learning,
-  octane,
-  rfcs,
-};
+const mapGroupNameToRepositories = new Map([
+  ['community', community],
+  ['core', core],
+  ['emberHelpWanted', emberHelpWanted],
+  ['learning', learning],
+  ['octane', octane],
+  ['rfcs', rfcs],
+]);
+
+function getRepositories(groupName) {
+  return mapGroupNameToRepositories.get(groupName);
+}
+
+module.exports = getRepositories;

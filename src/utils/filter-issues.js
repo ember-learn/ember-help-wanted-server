@@ -1,4 +1,4 @@
-const { allFilters } = require('../constants/ember-repos');
+const getRepositories = require('../constants/ember-repos');
 
 function getRepositoryName(repositoryUrl) {
   if (!repositoryUrl) {
@@ -16,9 +16,9 @@ function filterIssues(issues, groupName) {
     return [];
   }
 
-  const filters = allFilters[groupName];
+  const repositories = getRepositories(groupName);
 
-  if (!filters) {
+  if (!repositories) {
     return [];
   }
 
@@ -26,7 +26,7 @@ function filterIssues(issues, groupName) {
     const repositoryName = getRepositoryName(issue.repository_url);
     const issueLabels = issue.labels.map(({ name }) => name.toLowerCase());
 
-    const match = filters.find(({ name, label }) => {
+    const match = repositories.find(({ name, label }) => {
       const matchesRepositoryName = name === repositoryName;
       const matchesLabel = issueLabels.includes(label.toLowerCase());
 
