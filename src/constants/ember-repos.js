@@ -1,5 +1,6 @@
 const adopted_ember_addons = require('./repos/adopted-ember-addons');
 const ember_learn = require('./repos/ember-learn');
+const emberjs = require('./repos/emberjs');
 
 const community = [
   ...adopted_ember_addons,
@@ -12,14 +13,7 @@ const community = [
 
 const core = [
   { name: 'ember-cli/ember-cli', label: 'good first issue' },
-  { name: 'emberjs/data', label: 'Good for New Contributors' },
-  { name: 'emberjs/ember-inspector', label: 'good for new contributors' },
-  { name: 'emberjs/ember-inspector', label: 'help wanted' },
-  { name: 'emberjs/ember-optional-features', label: 'good first issue' },
-  { name: 'emberjs/ember-optional-features', label: 'help wanted' },
-  { name: 'emberjs/ember-test-helpers', label: 'beginner-friendly' },
-  { name: 'emberjs/ember.js', label: 'Good for New Contributors' },
-  { name: 'emberjs/ember.js', label: 'Help Wanted' },
+  ...emberjs,
 ];
 
 const emberHelpWanted = [

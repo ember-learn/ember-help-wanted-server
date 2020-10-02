@@ -71,7 +71,6 @@ describe('utils/filter-issues', function() {
         [
           'https://api.github.com/repos/ember-cli/ember-cli/issues/6713',
           'https://api.github.com/repos/emberjs/ember-inspector/issues/947',
-          'https://api.github.com/repos/emberjs/data/issues/5969',
           'https://api.github.com/repos/ember-cli/ember-cli/issues/7505',
         ]
       );
