@@ -31,7 +31,7 @@ describe('utils/filter-issues', function() {
     });
 
 
-    it('returns an empty array when groupName is supported by there are no matching issues', function() {
+    it('returns an empty array when groupName is supported but there are no matching issues', function() {
       const filteredIssues = filterIssues(
         issuesFixture,
         'emberHelpWanted'
