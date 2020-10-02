@@ -1,4 +1,5 @@
 const adopted_ember_addons = require('./repos/adopted-ember-addons');
+const ember_learn = require('./repos/ember-learn');
 
 const community = [
   ...adopted_ember_addons,
@@ -26,26 +27,7 @@ const emberHelpWanted = [
   { name: 'ember-learn/ember-help-wanted', label: 'help wanted' },
 ];
 
-const learning = [
-  { name: 'ember-learn/builds', label: 'DecEmber'},
-  { name: 'ember-learn/cli-guides', label: 'DecEmber'},
-  { name: 'ember-learn/contact-book', label: 'DecEmber'},
-  { name: 'ember-learn/deprecation-app', label: 'help wanted' },
-  { name: 'ember-learn/ember-api-docs', label: 'help wanted' },
-  { name: 'ember-learn/ember-help-wanted', label: 'DecEmber' },
-  { name: 'ember-learn/ember-help-wanted-server', label: 'DecEmber' },
-  { name: 'ember-learn/ember-styleguide', label: 'DecEmber' },
-  { name: 'ember-learn/ember-styleguide', label: 'help wanted :sos:' },
-  { name: 'ember-learn/ember-website', label: 'DecEmber' },
-  { name: 'ember-learn/ember-website', label: 'good first issue' },
-  { name: 'ember-learn/ember-website', label: 'help wanted' },
-  { name: 'ember-learn/guides-app', label: 'DecEmber' },
-  { name: 'ember-learn/guides-app', label: 'help wanted' },
-  { name: 'ember-learn/guides-source', label: 'DecEmber' },
-  { name: 'ember-learn/guides-source', label: 'help wanted' },
-  { name: 'ember-learn/statusboard', label: 'DecEmber'},
-  { name: 'ember-learn/tutorials', label: 'DecEmber'},
-];
+const learning = ember_learn;
 
 const octane = [
   { name: 'ember-cli/amd-name-resolver', label: 'octane' },
