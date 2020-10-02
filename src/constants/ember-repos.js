@@ -1,4 +1,7 @@
+const adopted_ember_addons = require('./repos/adopted-ember-addons');
+
 const community = [
+  ...adopted_ember_addons,
   { name: 'ember-cli/ember-twiddle', label: 'good first issue' },
   { name: 'ember-cli/ember-twiddle', label: 'help wanted' },
   { name: 'ember-engines/ember-engines', label: 'help wanted' },
