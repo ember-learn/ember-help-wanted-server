@@ -74,6 +74,7 @@ const repositoryNames = [
 ];
 
 const supportedLabels = [
+  'december',
   'good first issue',
   'hacktoberfest',
   'help wanted',
