@@ -31,6 +31,7 @@ const repositoryNames = [
   'canonicalize-addon-name',
   'capture-exit',
   'clean-base-url',
+  'codesandbox',
   'console-ui',
   'core-object',
   'create-ember-addon',
