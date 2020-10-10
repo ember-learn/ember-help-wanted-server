@@ -9,6 +9,9 @@
   ],
   "env": {
     "CACHE_UPDATE_INTERVAL": {
+      "required": false
+    },
+    "CACHE_UPDATE_INTERVAL_IN_MINUTES": {
       "required": true
     },
     "CORS_ALLOW_PATTERN": {
