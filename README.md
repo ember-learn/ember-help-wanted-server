@@ -1,13 +1,33 @@
-# ember-help-wanted-server
+[![This project uses GitHub Actions for continuous integration.](https://github.com/ember-learn/ember-help-wanted-server/workflows/CI/badge.svg)](https://github.com/ember-learn/ember-help-wanted-server/actions?query=workflow%3ACI)
 
-This is a thin backend for ember-help-wanted that proxies calls to the github API.
+ember-help-wanted-server
+==============================================================================
 
-# Running in Development
+This is a thin backend for [ember-help-wanted](https://github.com/ember-learn/ember-help-wanted). It searches for open GitHub issues in [Ember.js](https://emberjs.com/).
 
-1. You will need to [create a Github token](https://github.com/settings/tokens/new). You don't need to check any of the "select scopes" checkboxes -- we will only be reading public data.
 
-2. Copy `.env.example` to `.env` and edit `.env`, inserting your Github token.
+How to run
+------------------------------------------------------------------------------
 
-3. Run `yarn start`.
+1. You will need to [create a GitHub token](https://github.com/settings/tokens/new). You can leave all checkboxes under "Select scopes" empty. We will be reading public data only.
 
-4. To check that it's working, try looking at http://localhost:3000/github-issues?group=core.
+1. Copy `.env.example` as `.env`. Then, edit `.env` by adding your GitHub token to `GITHUB_API_TOKEN`.
+
+1. Run `yarn start`.
+
+    ```bash
+    yarn start
+
+    $ node src/index.js
+    fetching all issues
+    listening on port 3000!
+    fetching all repos
+    ```
+
+1. To check if the server app's working, visit [http://localhost:3000/github-issues?group=core](http://localhost:3000/github-issues?group=core). You will see an array of POJOs (GitHub issues). If you see an empty array, try refreshing the page.
+
+
+Compatibility
+------------------------------------------------------------------------------
+
+- Node.js v12.9 or above
