@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const octokit = require('@octokit/rest')();
 
 const { orgs, labels } = require('../config');
@@ -88,7 +87,7 @@ class GithubClient {
 
     while (doMoreIssuesExist && doMorePagesExist) {
       const { totalCount, issues } = await this.fetchIssuePage({ label, page });
-      allIssues.push(issues);
+      allIssues.push(...issues);
 
       doMoreIssuesExist = totalCount > (page * NUM_ISSUES_PER_PAGE);
       doMorePagesExist = page < MAX_PAGE_COUNT;
@@ -104,11 +103,29 @@ class GithubClient {
       return this.fetchIssuesWithLabel(label);
     });
 
-    const allIssues = await Promise.all(fetchRequests);
+    const responses = await Promise.all(fetchRequests);
 
-    return _.uniqWith(_.flattenDeep(allIssues), (a, b) => {
-      return a.id === b.id;
+    /*
+      An issue may appear more than once in `responses` if it has
+      multiple labels that we support.
+
+      The following code de-duplicates issues.
+    */
+    const mapIdToIssue = new Map();
+
+    responses.forEach(response => {
+      const allIssues = response;
+
+      allIssues.forEach(issue => {
+        const { id } = issue;
+
+        if (!mapIdToIssue.has(id)) {
+          mapIdToIssue.set(id, issue);
+        }
+      });
     });
+
+    return Array.from(mapIdToIssue.values());
   }
 
 

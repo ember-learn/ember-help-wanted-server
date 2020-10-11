@@ -280,40 +280,36 @@ describe('lib/github-client', function() {
         assert.deepEqual(
           response,
           [
-            [
-              {
-                id: 607065502,
-                html_url: 'https://github.com/adopted-ember-addons/ember-keyboard/issues/121',
-                repository_url: 'https://api.github.com/repos/adopted-ember-addons/ember-keyboard',
-                title: 'Review and improve Testing documentation',
-              },
-              {
-                id: 718487975,
-                html_url: 'https://github.com/ember-learn/super-rentals-tutorial/issues/161',
-                repository_url: 'https://api.github.com/repos/ember-learn/super-rentals-tutorial',
-                title: 'Add links for learning more (Part 2 of 4)',
-              },
-              {
-                id: 718620203,
-                html_url: 'https://github.com/ember-learn/ember-octane-vs-classic-cheat-sheet/issues/63',
-                repository_url: 'https://api.github.com/repos/ember-learn/ember-octane-vs-classic-cheat-sheet',
-                title: 'Allow the user to change their preferred language',
-              },
-            ],
-            [
-              {
-                id: 709835113,
-                html_url: 'https://github.com/ember-learn/upgrade-guide/issues/48',
-                repository_url: 'https://api.github.com/repos/ember-learn/upgrade-guide',
-                title: 'Separate form and search results (Part 1 of 2)',
-              },
-              {
-                id: 718488361,
-                html_url: 'https://github.com/ember-learn/super-rentals-tutorial/issues/163',
-                repository_url: 'https://api.github.com/repos/ember-learn/super-rentals-tutorial',
-                title: 'Add links for learning more (Part 4 of 4)',
-              },
-            ]
+            {
+              id: 607065502,
+              html_url: 'https://github.com/adopted-ember-addons/ember-keyboard/issues/121',
+              repository_url: 'https://api.github.com/repos/adopted-ember-addons/ember-keyboard',
+              title: 'Review and improve Testing documentation',
+            },
+            {
+              id: 718487975,
+              html_url: 'https://github.com/ember-learn/super-rentals-tutorial/issues/161',
+              repository_url: 'https://api.github.com/repos/ember-learn/super-rentals-tutorial',
+              title: 'Add links for learning more (Part 2 of 4)',
+            },
+            {
+              id: 718620203,
+              html_url: 'https://github.com/ember-learn/ember-octane-vs-classic-cheat-sheet/issues/63',
+              repository_url: 'https://api.github.com/repos/ember-learn/ember-octane-vs-classic-cheat-sheet',
+              title: 'Allow the user to change their preferred language',
+            },
+            {
+              id: 709835113,
+              html_url: 'https://github.com/ember-learn/upgrade-guide/issues/48',
+              repository_url: 'https://api.github.com/repos/ember-learn/upgrade-guide',
+              title: 'Separate form and search results (Part 1 of 2)',
+            },
+            {
+              id: 718488361,
+              html_url: 'https://github.com/ember-learn/super-rentals-tutorial/issues/163',
+              repository_url: 'https://api.github.com/repos/ember-learn/super-rentals-tutorial',
+              title: 'Add links for learning more (Part 4 of 4)',
+            },
           ],
           'We get the correct response.'
         );
