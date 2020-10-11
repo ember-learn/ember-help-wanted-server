@@ -78,27 +78,30 @@ class GithubClient {
     };
   }
 
-  async fetchAllIssues(label) {
-    let page = 0;
-    let moreItems = true;
-    let underPageLimit = true;
-    let allIssues = [];
 
-    while(moreItems && underPageLimit) {
-      page++;
+  async fetchIssuesWithLabel(label) {
+    const allIssues = [];
+
+    let doMoreIssuesExist = true;
+    let doMorePagesExist = true;
+    let page = 1;
+
+    while (doMoreIssuesExist && doMorePagesExist) {
       const { totalCount, issues } = await this.fetchIssuePage({ label, page });
       allIssues.push(issues);
 
-      moreItems = totalCount > (page * NUM_ISSUES_PER_PAGE);
-      underPageLimit = page < MAX_PAGE_COUNT;
+      doMoreIssuesExist = totalCount > (page * NUM_ISSUES_PER_PAGE);
+      doMorePagesExist = page < MAX_PAGE_COUNT;
+      page++;
     }
   
     return allIssues;
   }
 
+
   async fetchIssueSet() {
     const promises = labels.map(async (label) => {
-      return this.fetchAllIssues(label);
+      return this.fetchIssuesWithLabel(label);
     });
     let results = await Promise.all(promises);
 
