@@ -1,4 +1,4 @@
-const Octokit = require('@octokit/rest');
+const { Octokit } = require('@octokit/rest');
 const { orgs, labels } = require('../config');
 const getEnv = require('../environment');
 
@@ -15,10 +15,8 @@ class GithubClient {
     this.supportedOrganizations = supportedOrganizations;
     this.supportedLabels = supportedLabels;
 
-    this.octokit = new Octokit();
-    this.octokit.authenticate({
-      type: 'token',
-      token: API_TOKEN
+    this.octokit = new Octokit({
+      auth: API_TOKEN,
     });
   }
 
@@ -39,7 +37,7 @@ class GithubClient {
   async fetchIssuePage({ label, page }) {
     const query = this.buildQuery(label);
   
-    const { data } = await this.octokit.search.issues({
+    const { data } = await this.octokit.search.issuesAndPullRequests({
       q: query,
       sort: 'updated',
       order: 'desc',
@@ -134,9 +132,9 @@ class GithubClient {
 
 
   async getRateLimit() {
-    const { data } = await this.octokit.misc.getRateLimit({});
+    const { data } = await this.octokit.rateLimit.get();
 
-    return data.rate;
+    return data.resources.core;
   }
 }
 

@@ -488,11 +488,13 @@ describe('lib/github-client', function() {
           .get('/rate_limit')
           .reply(200, {
             // Other attributes omitted
-            rate: {
-              limit: 5000,
-              used: 0,
-              remaining: 5000,
-              reset: 1602452225,
+            resources: {
+              core: { limit: 5000, used: 5, remaining: 4995, reset: 1602454624 },
+              search: { limit: 30, used: 16, remaining: 14, reset: 1602451712 },
+              graphql: { limit: 5000, used: 1, remaining: 4999, reset: 1602451896 },
+              integration_manifest: { limit: 5000, used: 0, remaining: 5000, reset: 1602455281 },
+              source_import: { limit: 100, used: 0, remaining: 100, reset: 1602451741 },
+              code_scanning_upload: { limit: 500, used: 0, remaining: 500, reset: 1602455281 },
             },
           });
 
@@ -502,9 +504,9 @@ describe('lib/github-client', function() {
           response,
           {
             limit: 5000,
-            used: 0,
-            remaining: 5000,
-            reset: 1602452225,
+            used: 5,
+            remaining: 4995,
+            reset: 1602454624,
           },
           'We get the correct response.'
         );
