@@ -24,9 +24,17 @@ class GithubClient {
     });
   }
 
+
   buildQuery(label) {
-    let orgQuery = orgs.map(org => `org:${org}`).join(' ');
-    return `is:open ${orgQuery} label:"${label}"`;
+    const orgs = this.supportedOrganizations;
+
+    const qualifiers = [
+      'is:open',
+      ...orgs.map(org => `org:${org}`),
+      `label:"${label}"`,
+    ];
+
+    return qualifiers.join(' ');
   }
 
   async fetchIssuePage(label, page) {

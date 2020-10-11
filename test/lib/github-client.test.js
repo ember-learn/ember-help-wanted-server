@@ -55,6 +55,24 @@ describe('lib/github-client', function() {
         );
       });
     });
+
+
+    describe('buildQuery', function() {
+      it('works', function() {
+        const expectedQualifiers = [
+          'is:open',
+          'org:adopted-ember-addons',
+          'org:ember-learn',
+          'label:"help wanted"',
+        ];
+
+        assert.strictEqual(
+          this.client.buildQuery('help wanted'),
+          expectedQualifiers.join(' '),
+          'We get the correct query.'
+        );
+      });
+    });
   });
 
 
