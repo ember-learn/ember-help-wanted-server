@@ -55,13 +55,27 @@ class GithubClient {
     };
   }
 
-  async fetchAllRepos() {
-    let query = 'user:ember-learn+NOT+builds+NOT+statusboard+help-wanted-issues:>0+archived:false'
 
-    let response = await octokit.search.repos({
+  /*
+    TODO:
+
+    I think this method isn't needed because the search results
+    are specific to the `ember-learn` organization.
+
+    Consider removing this method, the corresponding API endpoint,
+    and the cache.
+  */
+  async fetchAllRepos() {
+    const query = 'user:ember-learn+NOT+builds+NOT+statusboard+help-wanted-issues:>0+archived:false'
+
+    const { data } = await octokit.search.repos({
       q: query,
     });
-    return response.data.items;
+
+    return {
+      totalCount: data.total_count,
+      repos: data.items,
+    };
   }
 
   async fetchAllIssues(label) {

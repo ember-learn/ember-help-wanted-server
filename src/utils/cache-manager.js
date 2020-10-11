@@ -26,7 +26,10 @@ async function getAllRepos() {
     console.log('fetching all repos');
 
     client = getGithubClient();
-    return await client.fetchAllRepos();
+    const { repos } = await client.fetchAllRepos();
+
+    return repos;
+
   } catch (error) {
     console.error(error);
     const response = await client.getRateLimit()

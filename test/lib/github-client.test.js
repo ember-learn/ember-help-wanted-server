@@ -148,6 +148,62 @@ describe('lib/github-client', function() {
         scope.done();
       });
     });
+
+
+    describe('fetchAllRepos', function() {
+      it('works', async function() {
+        const scope = nock('https://api.github.com:443', { encodedQueryParams: true })
+          .get('/search/repositories')
+          .query({
+            q: 'user:ember-learn+NOT+builds+NOT+statusboard+help-wanted-issues:>0+archived:false',
+          })
+          .reply(200, {
+            total_count: 3,
+            incomplete_results: false,
+            // Other attributes have been omitted
+            items: [
+              {
+                id: 44704884,
+                full_name: 'adopted-ember-addons/ember-keyboard',
+              },
+              {
+                id: 135148684,
+                full_name: 'ember-learn/ember-website',
+              },
+              {
+                id: 47560189,
+                full_name: 'ember-learn/ember-api-docs',
+              },
+            ],
+          });
+
+        const response = await this.client.fetchAllRepos();
+
+        assert.deepEqual(
+          response,
+          {
+            totalCount: 3,
+            repos: [
+              {
+                id: 44704884,
+                full_name: 'adopted-ember-addons/ember-keyboard',
+              },
+              {
+                id: 135148684,
+                full_name: 'ember-learn/ember-website',
+              },
+              {
+                id: 47560189,
+                full_name: 'ember-learn/ember-api-docs',
+              },
+            ],
+          },
+          'We get the correct response.'
+        );
+
+        scope.done();
+      });
+    });
   });
 
 
