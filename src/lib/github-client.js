@@ -10,9 +10,14 @@ const MAX_PAGE_COUNT = 10; // Github's max record depth is 1000
 
 
 class GithubClient {
-  constructor(api) {
-    this.api = api;
+  constructor({
+    supportedOrganizations = [],
+    supportedLabels = [],
+  }) {
+    this.supportedOrganizations = supportedOrganizations;
+    this.supportedLabels = supportedLabels;
 
+    this.api = octokit;
     this.api.authenticate({
       type: 'token',
       token: API_TOKEN
@@ -85,11 +90,18 @@ class GithubClient {
 // Create the GitHub client once in the app
 let client;
 
-module.exports = function() {
+function getGithubClient() {
   if (client) {
     return client;
   }
 
-  client = new GithubClient(octokit);
+  client = new GithubClient({
+    supportedOrganizations: orgs,
+    supportedLabels: labels,
+  });
+
   return client;
 }
+
+module.exports = GithubClient;
+module.exports.getGithubClient = getGithubClient;

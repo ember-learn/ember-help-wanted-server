@@ -2,7 +2,8 @@ const { assert } = require('chai');
 const { afterEach, beforeEach, describe, it } = require('mocha');
 const nock = require('nock');
 
-const getGithubClient = require('../../src/lib/github-client');
+const GithubClient = require('../../src/lib/github-client');
+const { getGithubClient } = require('../../src/lib/github-client');
 
 
 describe('lib/github-client', function() {
@@ -15,11 +16,65 @@ describe('lib/github-client', function() {
   });
 
 
+  describe('GithubClient', function() {
+    beforeEach(function() { 
+      this.client = new GithubClient({
+        supportedOrganizations: [
+          'adopted-ember-addons',
+          'ember-learn',
+        ],
+
+        supportedLabels: [
+          'good first issue',
+          'hacktoberfest',
+          'help wanted',
+        ],
+      });
+    });
+
+
+    describe('constructor', function() {
+      it('receives the supported organizations and labels', function() {
+        assert.deepEqual(
+          this.client.supportedOrganizations,
+          [
+            'adopted-ember-addons',
+            'ember-learn',
+          ],
+          'We get the correct supported organizations.'
+        );
+
+        assert.deepEqual(
+          this.client.supportedLabels,
+          [
+            'good first issue',
+            'hacktoberfest',
+            'help wanted',
+          ],
+          'We get the correct supported labels.'
+        );
+      });
+    });
+  });
+
+
   describe('getGithubClient', function() {
-    it('works', function() {
+    it('returns an instance of GithubClient class', function() {
       const client = getGithubClient();
 
       assert.isDefined(client);
+
+      assert.strictEqual(
+        client.supportedOrganizations.length,
+        10,
+        'We will support 10 organizations when searching GitHub issues.'
+      );
+
+      assert.strictEqual(
+        client.supportedLabels.length,
+        7,
+        'We will support 7 labels when searching GitHub issues.'
+      );
     });
   });
 });
