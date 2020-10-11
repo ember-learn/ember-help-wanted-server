@@ -1,5 +1,5 @@
-let getGithubClient = require('./github-client');
 let getEnv = require('./environment');
+let getGithubClient = require('./lib/github-client');
 
 const cacheUpdateIntervalInMinutes = getEnv('CACHE_UPDATE_INTERVAL_IN_MINUTES');
 const cacheUpdateIntervalInMilliseconds = cacheUpdateIntervalInMinutes * 60 * 1000;
