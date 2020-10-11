@@ -1,21 +1,13 @@
 const _ = require('lodash');
 const octokit = require('@octokit/rest')();
 
-const {orgs, labels} = require('./config');
-const getEnv = require('./environment');
+const { orgs, labels } = require('../config');
+const getEnv = require('../environment');
 
 const API_TOKEN = getEnv('GITHUB_API_TOKEN');
 const PAGE_SIZE = 100; // Github's max is 100
 const MAX_PAGE_COUNT = 10; // Github's max record depth is 1000
 
-let client;
-module.exports = function() {
-  if (client) {
-    return client;
-  }
-  client = new GithubClient(octokit);
-  return client;
-}
 
 class GithubClient {
   constructor(api) {
@@ -87,4 +79,17 @@ class GithubClient {
   async getRateLimit() {
     return await this.api.misc.getRateLimit({});
   }
+}
+
+
+// Create the GitHub client once in the app
+let client;
+
+module.exports = function() {
+  if (client) {
+    return client;
+  }
+
+  client = new GithubClient(octokit);
+  return client;
 }

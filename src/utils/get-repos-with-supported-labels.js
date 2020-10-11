@@ -1,7 +1,7 @@
-const adopted_ember_addons = require('./repos/adopted-ember-addons');
-const ember_cli = require('./repos/ember-cli');
-const ember_learn = require('./repos/ember-learn');
-const emberjs = require('./repos/emberjs');
+const adopted_ember_addons = require('../constants/ember-organizations/adopted-ember-addons');
+const ember_cli = require('../constants/ember-organizations/ember-cli');
+const ember_learn = require('../constants/ember-organizations/ember-learn');
+const emberjs = require('../constants/ember-organizations/emberjs');
 
 const community = [
   ...adopted_ember_addons,
@@ -38,8 +38,8 @@ const mapGroupNameToRepositories = new Map([
   ['rfcs', rfcs],
 ]);
 
-function getRepositories(groupName) {
+function getReposWithSupportedLabels(groupName) {
   return mapGroupNameToRepositories.get(groupName);
 }
 
-module.exports = getRepositories;
+module.exports = getReposWithSupportedLabels;

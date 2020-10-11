@@ -1,4 +1,4 @@
-const getRepositories = require('../constants/ember-repos');
+const getReposWithSupportedLabels = require('./get-repos-with-supported-labels');
 
 function getRepositoryName(repositoryUrl) {
   if (!repositoryUrl) {
@@ -16,9 +16,9 @@ function filterIssues(issues, groupName) {
     return [];
   }
 
-  const repositories = getRepositories(groupName);
+  const reposWithSupportedLabels = getReposWithSupportedLabels(groupName);
 
-  if (!repositories) {
+  if (!reposWithSupportedLabels) {
     return [];
   }
 
@@ -26,7 +26,7 @@ function filterIssues(issues, groupName) {
     const repositoryName = getRepositoryName(issue.repository_url);
     const issueLabels = issue.labels.map(({ name }) => name.toLowerCase());
 
-    const match = repositories.find(({ name, label }) => {
+    const match = reposWithSupportedLabels.find(({ name, label }) => {
       const matchesRepositoryName = name === repositoryName;
       const matchesLabel = issueLabels.includes(label.toLowerCase());
 

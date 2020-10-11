@@ -1,6 +1,6 @@
 let typeMap = {
   SERVER_PORT: Number,
-  CACHE_UPDATE_INTERVAL: Number
+  CACHE_UPDATE_INTERVAL_IN_MINUTES: Number
 };
 
 module.exports = function getEnv(key, defaultValue) {
