@@ -99,13 +99,14 @@ class GithubClient {
   }
 
 
-  async fetchIssueSet() {
-    const promises = labels.map(async (label) => {
+  async fetchAllIssues() {
+    const fetchRequests = this.supportedLabels.map(label => {
       return this.fetchIssuesWithLabel(label);
     });
-    let results = await Promise.all(promises);
 
-    return _.uniqWith(_.flattenDeep(results), (a, b) => {
+    const allIssues = await Promise.all(fetchRequests);
+
+    return _.uniqWith(_.flattenDeep(allIssues), (a, b) => {
       return a.id === b.id;
     });
   }

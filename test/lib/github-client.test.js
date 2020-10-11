@@ -322,6 +322,168 @@ describe('lib/github-client', function() {
         scope_page2.done();
       });
     });
+
+
+    describe('fetchAllIssues', function() {
+      it('works', async function() {
+        const scope_good_first_issue_page1 = nock('https://api.github.com:443', { encodedQueryParams: true })
+          .get('/search/issues')
+          .query({
+            q: this.client.buildQuery('good first issue'),
+            sort: 'updated',
+            order: 'desc',
+            per_page: 100,
+            page: 1,
+          })
+          .reply(200, {
+            total_count: 2,
+            incomplete_results: false,
+            items: [
+              {
+                id: 608455034,
+                html_url: 'https://github.com/adopted-ember-addons/ember-keyboard/issues/123',
+                repository_url: 'https://api.github.com/repos/adopted-ember-addons/ember-keyboard',
+                title: 'Use ember-addon-docs or similar to provide versioned documentation',
+              },
+              // Test duplicate issue
+              {
+                id: 718620203,
+                html_url: 'https://github.com/ember-learn/ember-octane-vs-classic-cheat-sheet/issues/63',
+                repository_url: 'https://api.github.com/repos/ember-learn/ember-octane-vs-classic-cheat-sheet',
+                title: 'Allow the user to change their preferred language',
+              },
+            ],
+          });
+
+        const scope_hacktoberfest_page1 = nock('https://api.github.com:443', { encodedQueryParams: true })
+          .get('/search/issues')
+          .query({
+            q: this.client.buildQuery('hacktoberfest'),
+            sort: 'updated',
+            order: 'desc',
+            per_page: 100,
+            page: 1,
+          })
+          .reply(200, {
+            total_count: 0,
+            incomplete_results: false,
+            items: [],
+          });
+
+        const scope_help_wanted_page1 = nock('https://api.github.com:443', { encodedQueryParams: true })
+          .get('/search/issues')
+          .query({
+            q: this.client.buildQuery('help wanted'),
+            sort: 'updated',
+            order: 'desc',
+            per_page: 100,
+            page: 1,
+          })
+          .reply(200, {
+            total_count: 102,
+            incomplete_results: false,
+            items: [
+              {
+                id: 607065502,
+                html_url: 'https://github.com/adopted-ember-addons/ember-keyboard/issues/121',
+                repository_url: 'https://api.github.com/repos/adopted-ember-addons/ember-keyboard',
+                title: 'Review and improve Testing documentation',
+              },
+              {
+                id: 718487975,
+                html_url: 'https://github.com/ember-learn/super-rentals-tutorial/issues/161',
+                repository_url: 'https://api.github.com/repos/ember-learn/super-rentals-tutorial',
+                title: 'Add links for learning more (Part 2 of 4)',
+              },
+              {
+                id: 718620203,
+                html_url: 'https://github.com/ember-learn/ember-octane-vs-classic-cheat-sheet/issues/63',
+                repository_url: 'https://api.github.com/repos/ember-learn/ember-octane-vs-classic-cheat-sheet',
+                title: 'Allow the user to change their preferred language',
+              },
+              // ... 97 more items have been skipped
+            ],
+          });
+
+        const scope_help_wanted_page2 = nock('https://api.github.com:443', { encodedQueryParams: true })
+          .get('/search/issues')
+          .query({
+            q: this.client.buildQuery('help wanted'),
+            sort: 'updated',
+            order: 'desc',
+            per_page: 100,
+            page: 2,
+          })
+          .reply(200, {
+            total_count: 102,
+            incomplete_results: false,
+            items: [
+              {
+                id: 709835113,
+                html_url: 'https://github.com/ember-learn/upgrade-guide/issues/48',
+                repository_url: 'https://api.github.com/repos/ember-learn/upgrade-guide',
+                title: 'Separate form and search results (Part 1 of 2)',
+              },
+              {
+                id: 718488361,
+                html_url: 'https://github.com/ember-learn/super-rentals-tutorial/issues/163',
+                repository_url: 'https://api.github.com/repos/ember-learn/super-rentals-tutorial',
+                title: 'Add links for learning more (Part 4 of 4)',
+              },
+            ],
+          });
+
+        const response = await this.client.fetchAllIssues();
+
+        assert.deepEqual(
+          response,
+          [
+            {
+              id: 608455034,
+              html_url: 'https://github.com/adopted-ember-addons/ember-keyboard/issues/123',
+              repository_url: 'https://api.github.com/repos/adopted-ember-addons/ember-keyboard',
+              title: 'Use ember-addon-docs or similar to provide versioned documentation',
+            },
+            {
+              id: 718620203,
+              html_url: 'https://github.com/ember-learn/ember-octane-vs-classic-cheat-sheet/issues/63',
+              repository_url: 'https://api.github.com/repos/ember-learn/ember-octane-vs-classic-cheat-sheet',
+              title: 'Allow the user to change their preferred language',
+            },
+            {
+              id: 607065502,
+              html_url: 'https://github.com/adopted-ember-addons/ember-keyboard/issues/121',
+              repository_url: 'https://api.github.com/repos/adopted-ember-addons/ember-keyboard',
+              title: 'Review and improve Testing documentation',
+            },
+            {
+              id: 718487975,
+              html_url: 'https://github.com/ember-learn/super-rentals-tutorial/issues/161',
+              repository_url: 'https://api.github.com/repos/ember-learn/super-rentals-tutorial',
+              title: 'Add links for learning more (Part 2 of 4)',
+            },
+            {
+              id: 709835113,
+              html_url: 'https://github.com/ember-learn/upgrade-guide/issues/48',
+              repository_url: 'https://api.github.com/repos/ember-learn/upgrade-guide',
+              title: 'Separate form and search results (Part 1 of 2)',
+            },
+            {
+              id: 718488361,
+              html_url: 'https://github.com/ember-learn/super-rentals-tutorial/issues/163',
+              repository_url: 'https://api.github.com/repos/ember-learn/super-rentals-tutorial',
+              title: 'Add links for learning more (Part 4 of 4)',
+            },
+          ],
+          'We get the correct response.'
+        );
+
+        scope_good_first_issue_page1.done();
+        scope_hacktoberfest_page1.done();
+        scope_help_wanted_page1.done();
+        scope_help_wanted_page2.done();
+      });
+    });
   });
 
 

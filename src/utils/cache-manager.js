@@ -11,7 +11,8 @@ async function getAllIssues() {
     console.log('fetching all issues');
 
     client = getGithubClient();
-    return await client.fetchIssueSet();
+    return await client.fetchAllIssues();
+
   } catch (error) {
     console.error(error);
     const response = await client.getRateLimit()
