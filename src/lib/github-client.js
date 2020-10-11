@@ -102,7 +102,7 @@ class GithubClient {
       return this.fetchIssuesWithLabel(label);
     });
 
-    const responses = await Promise.all(fetchRequests);
+    const results = await Promise.allSettled(fetchRequests);
 
     /*
       An issue may appear more than once in `responses` if it has
@@ -112,8 +112,13 @@ class GithubClient {
     */
     const mapIdToIssue = new Map();
 
-    responses.forEach(response => {
-      const allIssues = response;
+    results.forEach(({ status, value }) => {
+      if (status !== 'fulfilled') {
+        // Discard bad data
+        return;
+      }
+
+      const allIssues = value;
 
       allIssues.forEach(issue => {
         const { id } = issue;
