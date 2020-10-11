@@ -4,7 +4,7 @@ const octokit = require('@octokit/rest')();
 const { orgs, labels } = require('../config');
 const getEnv = require('../environment');
 
-const API_TOKEN = getEnv('GITHUB_API_TOKEN');
+const API_TOKEN = getEnv('GITHUB_API_TOKEN', 'fake_token_for_testing');
 const PAGE_SIZE = 100; // Github's max is 100
 const MAX_PAGE_COUNT = 10; // Github's max record depth is 1000
 
