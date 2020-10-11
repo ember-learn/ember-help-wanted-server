@@ -111,8 +111,11 @@ class GithubClient {
     });
   }
 
+
   async getRateLimit() {
-    return await this.api.misc.getRateLimit({});
+    const { data } = await this.api.misc.getRateLimit({});
+
+    return data.rate;
   }
 }
 

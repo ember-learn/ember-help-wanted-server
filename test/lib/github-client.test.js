@@ -484,6 +484,38 @@ describe('lib/github-client', function() {
         scope_help_wanted_page2.done();
       });
     });
+
+
+    describe('getRateLimit', function() {
+      it('works', async function() {
+        const scope = nock('https://api.github.com:443', { encodedQueryParams: true })
+          .get('/rate_limit')
+          .reply(200, {
+            // Other attributes omitted
+            rate: {
+              limit: 5000,
+              used: 0,
+              remaining: 5000,
+              reset: 1602452225,
+            },
+          });
+
+        const response = await this.client.getRateLimit();
+
+        assert.deepEqual(
+          response,
+          {
+            limit: 5000,
+            used: 0,
+            remaining: 5000,
+            reset: 1602452225,
+          },
+          'We get the correct response.'
+        );
+
+        scope.done();
+      });
+    });
   });
 
 

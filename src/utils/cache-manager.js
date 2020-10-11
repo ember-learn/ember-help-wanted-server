@@ -15,8 +15,10 @@ async function getAllIssues() {
 
   } catch (error) {
     console.error(error);
-    const response = await client.getRateLimit()
-    console.log('rate limit: ', JSON.stringify(response.data, null, 2));
+
+    const rateLimit = await client.getRateLimit();
+    console.log('rate limit: ', JSON.stringify(rateLimit, null, 2));
+
   }
 }
 
@@ -33,8 +35,10 @@ async function getAllRepos() {
 
   } catch (error) {
     console.error(error);
-    const response = await client.getRateLimit()
-    console.log('rate limit: ', JSON.stringify(response.data, null, 2));
+
+    const rateLimit = await client.getRateLimit();
+    console.log('rate limit: ', JSON.stringify(rateLimit, null, 2));
+
   }
 }
 
