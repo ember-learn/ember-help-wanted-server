@@ -73,6 +73,81 @@ describe('lib/github-client', function() {
         );
       });
     });
+
+
+    describe('fetchIssuePage', function() {
+      it('works', async function() {
+        const label = 'help wanted';
+        const page = 1;
+
+        const scope = nock('https://api.github.com:443', { encodedQueryParams: true })
+          .get('/search/issues')
+          .query({
+            q: this.client.buildQuery(label),
+            sort: 'updated',
+            order: 'desc',
+            per_page: 100,
+            page: 1,
+          })
+          .reply(200, {
+            total_count: 3,
+            incomplete_results: false,
+            // Other attributes have been omitted
+            items: [
+              {
+                id: 607065502,
+                html_url: 'https://github.com/adopted-ember-addons/ember-keyboard/issues/121',
+                repository_url: 'https://api.github.com/repos/adopted-ember-addons/ember-keyboard',
+                title: 'Review and improve Testing documentation',
+              },
+              {
+                id: 718487975,
+                html_url: 'https://github.com/ember-learn/super-rentals-tutorial/issues/161',
+                repository_url: 'https://api.github.com/repos/ember-learn/super-rentals-tutorial',
+                title: 'Add links for learning more (Part 2 of 4)',
+              },
+              {
+                id: 718620203,
+                html_url: 'https://github.com/ember-learn/ember-octane-vs-classic-cheat-sheet/issues/63',
+                repository_url: 'https://api.github.com/repos/ember-learn/ember-octane-vs-classic-cheat-sheet',
+                title: 'Allow the user to change their preferred language',
+              },
+            ],
+          });
+
+        const response = await this.client.fetchIssuePage({ label, page });
+
+        assert.deepEqual(
+          response,
+          {
+            totalCount: 3,
+            issues: [
+              {
+                id: 607065502,
+                html_url: 'https://github.com/adopted-ember-addons/ember-keyboard/issues/121',
+                repository_url: 'https://api.github.com/repos/adopted-ember-addons/ember-keyboard',
+                title: 'Review and improve Testing documentation',
+              },
+              {
+                id: 718487975,
+                html_url: 'https://github.com/ember-learn/super-rentals-tutorial/issues/161',
+                repository_url: 'https://api.github.com/repos/ember-learn/super-rentals-tutorial',
+                title: 'Add links for learning more (Part 2 of 4)',
+              },
+              {
+                id: 718620203,
+                html_url: 'https://github.com/ember-learn/ember-octane-vs-classic-cheat-sheet/issues/63',
+                repository_url: 'https://api.github.com/repos/ember-learn/ember-octane-vs-classic-cheat-sheet',
+                title: 'Allow the user to change their preferred language',
+              },
+            ],
+          },
+          'We get the correct response.'
+        );
+
+        scope.done();
+      });
+    });
   });
 
 

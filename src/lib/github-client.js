@@ -5,7 +5,7 @@ const { orgs, labels } = require('../config');
 const getEnv = require('../environment');
 
 const API_TOKEN = getEnv('GITHUB_API_TOKEN', 'fake_token_for_testing');
-const PAGE_SIZE = 100; // Github's max is 100
+const NUM_ISSUES_PER_PAGE = 100; // Github's max is 100
 const MAX_PAGE_COUNT = 10; // Github's max record depth is 1000
 
 
@@ -37,17 +37,22 @@ class GithubClient {
     return qualifiers.join(' ');
   }
 
-  async fetchIssuePage(label, page) {
-    let query = this.buildQuery(label);
+
+  async fetchIssuePage({ label, page }) {
+    const query = this.buildQuery(label);
   
-    let response = await octokit.search.issues({
+    const { data } = await octokit.search.issues({
       q: query,
       sort: 'updated',
       order: 'desc',
-      per_page: PAGE_SIZE,
-      page
+      per_page: NUM_ISSUES_PER_PAGE,
+      page,
     });
-    return response.data.items;
+
+    return {
+      totalCount: data.total_count,
+      issues: data.items,
+    };
   }
 
   async fetchAllRepos() {
@@ -67,11 +72,10 @@ class GithubClient {
 
     while(moreItems && underPageLimit) {
       page++;
-      let pageData = await this.fetchIssuePage(label, page);
+      const { totalCount, issues } = await this.fetchIssuePage({ label, page });
+      allIssues.push(issues);
 
-      allIssues.push(pageData);
-
-      moreItems = pageData.total_count > (pageData.length * page);
+      moreItems = totalCount > (page * NUM_ISSUES_PER_PAGE);
       underPageLimit = page < MAX_PAGE_COUNT;
     }
   
