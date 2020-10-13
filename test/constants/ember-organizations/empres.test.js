@@ -8,8 +8,8 @@ describe('constants/ember-organizations/empress', function() {
   it('We instantiated the class correctly', function() {
     assert.strictEqual(
       reposWithSupportedLabels.length,
-      87,
-      'There are 87 filters for empress.'
+      84,
+      'There are 84 filters for empress.'
     );
   });
 });
