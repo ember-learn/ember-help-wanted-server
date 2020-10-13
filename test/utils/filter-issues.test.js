@@ -99,7 +99,7 @@ describe('utils/filter-issues', function() {
     it('filters issues when groupName is provided (4)', function() {
       const filteredIssues = filterIssues(
         issuesFixture,
-        'rfcs'
+        'RFCs'
       );
 
       assert.deepEqual(
