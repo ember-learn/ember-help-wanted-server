@@ -5,9 +5,9 @@ const githubOrganization = new GithubOrganization({
 
   repositoryNames: [
     'ember-cli-template-lint',
+    'ember-template-lint',
     'ember-template-lint-plugin-prettier',
     'ember-template-lint-todo-utils',
-    'ember-template-lint',
     'ember-template-recast',
     'eslint-plugin-hbs',
     'website',
