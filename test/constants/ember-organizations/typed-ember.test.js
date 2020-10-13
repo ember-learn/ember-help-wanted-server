@@ -8,8 +8,8 @@ describe('constants/ember-organizations/typed-ember', function() {
   it('We instantiated the class correctly', function() {
     assert.strictEqual(
       reposWithSupportedLabels.length,
-      30,
-      'There are 30 filters for typed-ember.'
+      27,
+      'There are 27 filters for typed-ember.'
     );
   });
 });
