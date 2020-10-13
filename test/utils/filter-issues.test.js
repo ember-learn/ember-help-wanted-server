@@ -31,10 +31,10 @@ describe('utils/filter-issues', function() {
     });
 
 
-    it('returns an empty array when groupName is supported but there are no matching issues', function() {
+    it('returns an empty array when there are no help wanted issues', function() {
       const filteredIssues = filterIssues(
         issuesFixture,
-        'emberHelpWanted'
+        'typed-ember'
       );
 
       assert.deepEqual(
@@ -44,42 +44,10 @@ describe('utils/filter-issues', function() {
     });
 
 
-    it('filters issues when groupName is provided (1)', function() {
+    it('filters issues when groupName matches an organization name (1)', function() {
       const filteredIssues = filterIssues(
         issuesFixture,
-        'community'
-      );
-
-      assert.deepEqual(
-        filteredIssues.map(({ url }) => url),
-        []
-      );
-    });
-
-
-    it('filters issues when groupName is provided (2)', function() {
-      const filteredIssues = filterIssues(
-        issuesFixture,
-        'core'
-      );
-
-      assert.deepEqual(
-        filteredIssues.map(({ url }) => url),
-        [
-          'https://api.github.com/repos/ember-cli/ember-cli/issues/6713',
-          'https://api.github.com/repos/emberjs/ember-inspector/issues/947',
-          'https://api.github.com/repos/ember-cli/ember-twiddle/issues/725',
-          'https://api.github.com/repos/ember-cli/ember-twiddle/issues/108',
-          'https://api.github.com/repos/ember-cli/ember-cli/issues/7505',
-        ]
-      );
-    });
-
-
-    it('filters issues when groupName is provided (3)', function() {
-      const filteredIssues = filterIssues(
-        issuesFixture,
-        'learning'
+        'ember-learn'
       );
 
       assert.deepEqual(
@@ -96,10 +64,25 @@ describe('utils/filter-issues', function() {
     });
 
 
-    it('filters issues when groupName is provided (4)', function() {
+    it('filters issues when groupName matches an organization name (2)', function() {
       const filteredIssues = filterIssues(
         issuesFixture,
-        'rfcs'
+        'emberjs'
+      );
+
+      assert.deepEqual(
+        filteredIssues.map(({ url }) => url),
+        [
+          'https://api.github.com/repos/emberjs/ember-inspector/issues/947',
+        ]
+      );
+    });
+
+
+    it('filters issues when groupName matches a custom category', function() {
+      const filteredIssues = filterIssues(
+        issuesFixture,
+        'RFCs'
       );
 
       assert.deepEqual(
@@ -109,19 +92,6 @@ describe('utils/filter-issues', function() {
           'https://api.github.com/repos/emberjs/rfcs/issues/360',
           'https://api.github.com/repos/emberjs/rfcs/issues/426',
         ]
-      );
-    });
-
-
-    it('filters issues when groupName is provided (5)', function() {
-      const filteredIssues = filterIssues(
-        issuesFixture,
-        'octane'
-      );
-
-      assert.deepEqual(
-        filteredIssues.map(({ url }) => url),
-        []
       );
     });
   });
