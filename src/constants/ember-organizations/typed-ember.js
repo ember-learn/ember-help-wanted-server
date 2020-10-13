@@ -5,10 +5,10 @@ const githubOrganization = new GithubOrganization({
 
   repositoryNames: [
     'ember-cli-tslint',
-    'ember-cli-typescript-blueprints',
     'ember-cli-typescript',
+    'ember-cli-typescript-blueprints',
     'ember-data-shim-typings',
-    'ember-typings Archived',
+    // 'ember-typings',
     'ember-typings-generator',
     'ember-unsafe-typings',
     'renovate-config',
