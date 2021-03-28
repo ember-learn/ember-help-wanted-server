@@ -27,6 +27,25 @@ How to run
 1. To check if the server app's working, visit [http://localhost:3000/github-issues?group=core](http://localhost:3000/github-issues?group=core). You will see an array of POJOs (GitHub issues). If you see an empty array, try refreshing the page.
 
 
+Continuous integration
+------------------------------------------------------------------------------
+
+We use [GitHub Actions](.github/workflows/ci.yml) to lint and test the app when a PR (pull request) is created and merged.
+
+Run the following commands to lint and test from local machine:
+
+```bash
+yarn lint
+yarn test
+```
+
+To fix linting errors, try the following command:
+
+```bash
+yarn lint:fix
+```
+
+
 Compatibility
 ------------------------------------------------------------------------------
 

@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "lint:js": "eslint .",
-    "test": "mocha \"./test/**/*.js\""
+    "lint": "eslint . --cache",
+    "lint:fix": "eslint . --fix",
+    "test": "mocha test/**/*.js"
   },
   "author": "",
   "license": "MIT",
