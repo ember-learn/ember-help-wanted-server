@@ -45,7 +45,7 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
 
       - name: Lint
-        run: yarn lint:js
+        run: yarn lint
 
 
   test:
