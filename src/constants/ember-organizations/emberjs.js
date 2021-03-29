@@ -46,8 +46,6 @@ const githubOrganization = new GithubOrganization({
     'emberjs.github.com',
     'eslint-plugin-ember-internal',
     'group-helper',
-    'guides',
-    'guides.emberjs.com',
     'legacy-bind-attr',
     'list-view',
     'log-manager',
@@ -56,7 +54,6 @@ const githubOrganization = new GithubOrganization({
     'rfcs',
     'starter-kit',
     'testem-failure-only-reporter',
-    'website',
     'whiteboard',
   ],
 
