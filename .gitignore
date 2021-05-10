@@ -6,4 +6,5 @@
 # misc
 /.env
 /.eslintcache
+/.prettierignore
 /.vscode
