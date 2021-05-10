@@ -32,36 +32,40 @@ class Server {
      * This setup allows both CORS_ORIGIN and CORS_ALLOW_PATTERN to be optional
      */
     if (CORS_ORIGIN || CORS_ALLOW_PATTERN) {
-      app.use(cors({
-        origin: function (origin, callback) {
-          // if origin is not defined then we are not in a CORS situation and by
-          // the spec we should allow this request
-          if (!origin) {
-            callback(null, true);
-          }
+      app.use(
+        cors({
+          origin: function (origin, callback) {
+            // if origin is not defined then we are not in a CORS situation and by
+            // the spec we should allow this request
+            if (!origin) {
+              callback(null, true);
+            }
 
-          if(CORS_ALLOW_PATTERN && origin.match(CORS_ALLOW_PATTERN)) {
-            return callback(null, true);
-          }
+            if (CORS_ALLOW_PATTERN && origin.match(CORS_ALLOW_PATTERN)) {
+              return callback(null, true);
+            }
 
-          if(origin === CORS_ORIGIN) {
-            return callback(null, true);
-          }
+            if (origin === CORS_ORIGIN) {
+              return callback(null, true);
+            }
 
-          callback(new Error('Not allowed by CORS'))
-        }
-      }));
+            callback(new Error('Not allowed by CORS'));
+          },
+        })
+      );
     }
   }
 
   start() {
     app.listen(PORT, () => {
-      console.log([
-        `listening on port ${PORT}!\n`,
-        "To check if the server app's working, visit http://localhost:3000/github-issues?group=core .",
-        'You will see an array of POJOs (GitHub issues).',
-        'If you see an empty array, try refreshing the page.\n'
-      ].join('\n'));
+      console.log(
+        [
+          `listening on port ${PORT}!\n`,
+          "To check if the server app's working, visit http://localhost:3000/github-issues?group=core .",
+          'You will see an array of POJOs (GitHub issues).',
+          'If you see an empty array, try refreshing the page.\n',
+        ].join('\n')
+      );
     });
   }
 

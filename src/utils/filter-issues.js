@@ -22,7 +22,7 @@ function filterIssues(issues, groupName) {
     return [];
   }
 
-  return issues.filter(issue => {
+  return issues.filter((issue) => {
     const repositoryName = getRepositoryName(issue.repository_url);
     const issueLabels = issue.labels.map(({ name }) => name.toLowerCase());
 

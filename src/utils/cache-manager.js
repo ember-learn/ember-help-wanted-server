@@ -2,7 +2,8 @@ const getEnv = require('../environment');
 const { getGithubClient } = require('../lib/github-client');
 
 const cacheUpdateIntervalInMinutes = getEnv('CACHE_UPDATE_INTERVAL_IN_MINUTES');
-const cacheUpdateIntervalInMilliseconds = cacheUpdateIntervalInMinutes * 60 * 1000;
+const cacheUpdateIntervalInMilliseconds =
+  cacheUpdateIntervalInMinutes * 60 * 1000;
 
 async function getAllIssues() {
   let client;
@@ -12,13 +13,11 @@ async function getAllIssues() {
 
     client = getGithubClient();
     return await client.fetchAllIssues();
-
   } catch (error) {
     console.error(error);
 
     const rateLimit = await client.getRateLimit();
     console.log('rate limit: ', JSON.stringify(rateLimit, null, 2));
-
   }
 }
 
@@ -32,13 +31,11 @@ async function getAllRepos() {
     const { repos } = await client.fetchAllRepos();
 
     return repos;
-
   } catch (error) {
     console.error(error);
 
     const rateLimit = await client.getRateLimit();
     console.log('rate limit: ', JSON.stringify(rateLimit, null, 2));
-
   }
 }
 
@@ -55,5 +52,5 @@ module.exports = {
     setInterval(() => {
       fetchAndUpdate(onUpdate);
     }, cacheUpdateIntervalInMilliseconds);
-  }
+  },
 };

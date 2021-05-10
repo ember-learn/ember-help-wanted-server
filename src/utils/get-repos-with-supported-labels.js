@@ -16,10 +16,7 @@ const community = [
   { name: 'typed-ember/ember-cli-typescript', label: 'help wanted' },
 ];
 
-const core = [
-  ...ember_cli,
-  ...emberjs,
-];
+const core = [...ember_cli, ...emberjs];
 
 const emberHelpWanted = [
   { name: 'ember-learn/ember-help-wanted', label: 'good first issue' },
@@ -59,7 +56,7 @@ const mapGroupNameToRepositories = new Map([
   ['community', community],
   ['core', core],
   ['emberHelpWanted', emberHelpWanted],
-  ['learning', learning]
+  ['learning', learning],
 ]);
 
 function getReposWithSupportedLabels(groupName) {

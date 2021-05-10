@@ -6,12 +6,8 @@ const API_TOKEN = getEnv('GITHUB_API_TOKEN', 'fake_token_for_testing');
 const NUM_ISSUES_PER_PAGE = 100; // Github's max is 100
 const MAX_PAGE_COUNT = 10; // Github's max record depth is 1000
 
-
 class GithubClient {
-  constructor({
-    supportedOrganizations = [],
-    supportedLabels = [],
-  }) {
+  constructor({ supportedOrganizations = [], supportedLabels = [] }) {
     this.supportedOrganizations = supportedOrganizations;
     this.supportedLabels = supportedLabels;
 
@@ -20,23 +16,21 @@ class GithubClient {
     });
   }
 
-
   buildQuery(label) {
     const orgs = this.supportedOrganizations;
 
     const qualifiers = [
       'is:open',
-      ...orgs.map(org => `org:${org}`),
+      ...orgs.map((org) => `org:${org}`),
       `label:"${label}"`,
     ];
 
     return qualifiers.join(' ');
   }
 
-
   async fetchIssuePage({ label, page }) {
     const query = this.buildQuery(label);
-  
+
     const { data } = await this.octokit.search.issuesAndPullRequests({
       q: query,
       sort: 'updated',
@@ -51,7 +45,6 @@ class GithubClient {
     };
   }
 
-
   /*
     TODO:
 
@@ -62,7 +55,8 @@ class GithubClient {
     and the cache.
   */
   async fetchAllRepos() {
-    const query = 'user:ember-learn+NOT+builds+NOT+statusboard+help-wanted-issues:>0+archived:false'
+    const query =
+      'user:ember-learn+NOT+builds+NOT+statusboard+help-wanted-issues:>0+archived:false';
 
     const { data } = await this.octokit.search.repos({
       q: query,
@@ -73,7 +67,6 @@ class GithubClient {
       repos: data.items,
     };
   }
-
 
   async fetchIssuesWithLabel(label) {
     const allIssues = [];
@@ -86,17 +79,16 @@ class GithubClient {
       const { totalCount, issues } = await this.fetchIssuePage({ label, page });
       allIssues.push(...issues);
 
-      doMoreIssuesExist = totalCount > (page * NUM_ISSUES_PER_PAGE);
+      doMoreIssuesExist = totalCount > page * NUM_ISSUES_PER_PAGE;
       doMorePagesExist = page < MAX_PAGE_COUNT;
       page++;
     }
-  
+
     return allIssues;
   }
 
-
   async fetchAllIssues() {
-    const fetchRequests = this.supportedLabels.map(label => {
+    const fetchRequests = this.supportedLabels.map((label) => {
       return this.fetchIssuesWithLabel(label);
     });
 
@@ -118,7 +110,7 @@ class GithubClient {
 
       const allIssues = value;
 
-      allIssues.forEach(issue => {
+      allIssues.forEach((issue) => {
         const { id } = issue;
 
         if (!mapIdToIssue.has(id)) {
@@ -130,14 +122,12 @@ class GithubClient {
     return Array.from(mapIdToIssue.values());
   }
 
-
   async getRateLimit() {
     const { data } = await this.octokit.rateLimit.get();
 
     return data.resources.core;
   }
 }
-
 
 // Create the GitHub client once in the app
 let client;
