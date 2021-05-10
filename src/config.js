@@ -27,5 +27,5 @@ module.exports = {
     'hacktoberfest',
     'help wanted',
     'Needs Champion',
-  ]
+  ],
 };

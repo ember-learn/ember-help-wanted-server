@@ -9,7 +9,6 @@ class GithubOrganization {
     this.supportedLabels = supportedLabels;
   }
 
-
   getReposWithSupportedLabels() {
     const organizationName = this.organizationName;
     const repositoryNames = this.repositoryNames;
@@ -25,10 +24,10 @@ class GithubOrganization {
     */
     const reposWithSupportedLabels = [];
 
-    repositoryNames.forEach(repositoryName => {
+    repositoryNames.forEach((repositoryName) => {
       const name = `${organizationName}/${repositoryName}`;
 
-      supportedLabels.forEach(label => {
+      supportedLabels.forEach((label) => {
         reposWithSupportedLabels.push({ name, label });
       });
     });

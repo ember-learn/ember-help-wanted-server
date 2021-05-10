@@ -13,11 +13,7 @@ const githubOrganization = new GithubOrganization({
     'engine-testing',
   ],
 
-  supportedLabels: [
-    'good first issue',
-    'hacktoberfest',
-    'help wanted',
-  ],
+  supportedLabels: ['good first issue', 'hacktoberfest', 'help wanted'],
 });
 
 module.exports = githubOrganization.getReposWithSupportedLabels();

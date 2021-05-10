@@ -35,11 +35,7 @@ const githubOrganization = new GithubOrganization({
     'training-buddy-default-template',
   ],
 
-  supportedLabels: [
-    'good first issue',
-    'hacktoberfest',
-    'help wanted',
-  ],
+  supportedLabels: ['good first issue', 'hacktoberfest', 'help wanted'],
 });
 
 module.exports = githubOrganization.getReposWithSupportedLabels();

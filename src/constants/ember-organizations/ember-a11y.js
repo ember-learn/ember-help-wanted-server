@@ -17,11 +17,7 @@ const githubOrganization = new GithubOrganization({
     'with-pair',
   ],
 
-  supportedLabels: [
-    'good first issue',
-    'hacktoberfest',
-    'help wanted',
-  ],
+  supportedLabels: ['good first issue', 'hacktoberfest', 'help wanted'],
 });
 
 module.exports = githubOrganization.getReposWithSupportedLabels();

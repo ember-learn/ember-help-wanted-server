@@ -31,11 +31,7 @@ const githubOrganization = new GithubOrganization({
     'program-guidelines',
   ],
 
-  supportedLabels: [
-    'good first issue',
-    'hacktoberfest',
-    'help wanted',
-  ],
+  supportedLabels: ['good first issue', 'hacktoberfest', 'help wanted'],
 });
 
 module.exports = githubOrganization.getReposWithSupportedLabels();

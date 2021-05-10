@@ -111,11 +111,7 @@ const githubOrganization = new GithubOrganization({
     'yuidoc-ember-cli-theme',
   ],
 
-  supportedLabels: [
-    'good first issue',
-    'hacktoberfest',
-    'help wanted',
-  ],
+  supportedLabels: ['good first issue', 'hacktoberfest', 'help wanted'],
 });
 
 module.exports = githubOrganization.getReposWithSupportedLabels();
