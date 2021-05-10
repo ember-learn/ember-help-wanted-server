@@ -55,7 +55,14 @@ class Server {
   }
 
   start() {
-    app.listen(PORT, () => console.log(`listening on port ${PORT}!`));
+    app.listen(PORT, () => {
+      console.log([
+        `listening on port ${PORT}!\n`,
+        "To check if the server app's working, visit http://localhost:3000/github-issues?group=core .",
+        'You will see an array of POJOs (GitHub issues).',
+        'If you see an empty array, try refreshing the page.\n'
+      ].join('\n'));
+    });
   }
 
   initializeRoutes() {
