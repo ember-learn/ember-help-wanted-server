@@ -39,10 +39,29 @@ async function getAllRepos() {
   }
 }
 
+async function getAllPullRequests() {
+  let client;
+
+  try {
+    console.log('fetching all pullRequests');
+
+    client = getGithubClient();
+    const { prs } = await client.fetchAllPullRequests();
+
+    return prs;
+  } catch (error) {
+    console.error(error);
+
+    const rateLimit = await client.getRateLimit();
+    console.log('rate limit: ', JSON.stringify(rateLimit, null, 2));
+  }
+}
+
 async function fetchAndUpdate(onUpdate) {
   let issueCache = await getAllIssues();
   let repoCache = await getAllRepos();
-  onUpdate(issueCache, repoCache);
+  let prCache = await getAllPullRequests();
+  onUpdate(issueCache, repoCache, prCache);
 }
 
 module.exports = {
