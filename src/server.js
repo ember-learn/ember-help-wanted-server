@@ -87,7 +87,6 @@ class Server {
   }
 
   setCache(issueCache, repoCache, prCache) {
-    console.log('setting pr cache', { prCache });
     this.issueCache = issueCache;
     this.repoCache = repoCache;
     this.prCache = prCache;
