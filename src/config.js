@@ -26,6 +26,8 @@ module.exports = {
     'good for new contributors',
     'hacktoberfest',
     'help wanted',
+    'help-wanted',
     'Needs Champion',
+    'needs maintainer'
   ],
 };
