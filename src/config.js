@@ -28,6 +28,6 @@ module.exports = {
     'help wanted',
     'help-wanted',
     'Needs Champion',
-    'needs maintainer'
+    'needs maintainer',
   ],
 };
