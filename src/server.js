@@ -70,6 +70,8 @@ class Server {
   }
 
   initializeRoutes() {
+    // These routes are not namespaced on the front end.
+    // Make sure they don't collide.
     app.get('/github-repositories', (req, res) => {
       res.json(this.repoCache);
     });
@@ -80,11 +82,16 @@ class Server {
 
       res.json(results);
     });
+
+    app.get('/api/pull-requests', (req, res) => {
+      res.json(this.prCache);
+    });
   }
 
-  setCache(issueCache, repoCache) {
+  setCache(issueCache, repoCache, prCache) {
     this.issueCache = issueCache;
     this.repoCache = repoCache;
+    this.prCache = prCache;
   }
 }
 

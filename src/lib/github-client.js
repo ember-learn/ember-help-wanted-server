@@ -122,6 +122,20 @@ class GithubClient {
     return Array.from(mapIdToIssue.values());
   }
 
+  async fetchAllPullRequests() {
+    /// 'user:ember-learn+NOT+builds+NOT+statusboard+help-wanted-issues:>0+archived:false';
+    const query = `is:open is:pr user:ember-learn -label:dependencies draft:false`;
+    const { data } = await this.octokit.search.issuesAndPullRequests({
+      q: query,
+      sort: 'updated',
+      order: 'desc',
+      per_page: NUM_ISSUES_PER_PAGE,
+      page: 1,
+    });
+
+    return { prs: data.items };
+  }
+
   async getRateLimit() {
     const { data } = await this.octokit.rateLimit.get();
 
