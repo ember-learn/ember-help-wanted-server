@@ -124,7 +124,7 @@ class GithubClient {
 
   async fetchAllPullRequests() {
     /// 'user:ember-learn+NOT+builds+NOT+statusboard+help-wanted-issues:>0+archived:false';
-    const query = `is:open is:pr user:ember-learn -label:dependencies`;
+    const query = `is:open is:pr user:ember-learn -label:dependencies draft:false`;
     const { data } = await this.octokit.search.issuesAndPullRequests({
       q: query,
       sort: 'updated',
