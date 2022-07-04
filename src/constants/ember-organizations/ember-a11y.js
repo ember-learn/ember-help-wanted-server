@@ -6,9 +6,9 @@ const githubOrganization = new GithubOrganization({
   repositoryNames: [
     'a11y-announcer',
     'a11y-demo-app',
-    'core-notes',
+    // 'core-notes',
     'ember-a11y',
-    'ember-a11y-landmarks',
+    // 'ember-a11y-landmarks',
     'ember-a11y-refocus',
     'ember-a11y-testing',
     'ember-a11y.com',
