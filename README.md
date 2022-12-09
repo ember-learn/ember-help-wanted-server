@@ -13,10 +13,10 @@ How to run
 
 1. Copy `.env.example` as `.env`. Then, edit `.env` by adding your GitHub token to `GITHUB_API_TOKEN`.
 
-1. Run `yarn start`.
+1. Run `npm start`.
 
     ```bash
-    yarn start
+    npm start
 
     $ node src/index.js
     fetching all issues
@@ -35,14 +35,14 @@ We use [GitHub Actions](.github/workflows/ci.yml) to lint and test the app when 
 Run the following commands to lint and test from local machine:
 
 ```bash
-yarn lint
-yarn test
+npm lint
+npm test
 ```
 
 To fix linting errors, try the following command:
 
 ```bash
-yarn lint:fix
+npm lint:fix
 ```
 
 
