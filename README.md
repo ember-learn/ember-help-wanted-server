@@ -35,14 +35,14 @@ We use [GitHub Actions](.github/workflows/ci.yml) to lint and test the app when 
 Run the following commands to lint and test from local machine:
 
 ```bash
-npm lint
+npm run lint
 npm test
 ```
 
 To fix linting errors, try the following command:
 
 ```bash
-npm lint:fix
+npm run lint:fix
 ```
 
 
