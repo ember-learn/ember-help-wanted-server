@@ -1,7 +1,4 @@
 {
-  "addons": [
-    "logentries"
-  ],
   "buildpacks": [
     {
       "url": "heroku/nodejs"
