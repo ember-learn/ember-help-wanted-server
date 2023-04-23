@@ -1,7 +1,4 @@
 {
-  "addons": [
-    "logentries"
-  ],
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -29,5 +26,5 @@
   "name": "ember-help-wanted-server",
   "scripts": {
   },
-  "stack": "heroku-20"
+  "stack": "heroku-22"
 }
