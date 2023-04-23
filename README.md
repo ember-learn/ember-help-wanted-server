@@ -49,4 +49,4 @@ npm run lint:fix
 Compatibility
 ------------------------------------------------------------------------------
 
-- Node.js v12.9 or above
+- Node.js v18.9 or above
