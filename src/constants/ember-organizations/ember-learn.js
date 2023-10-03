@@ -29,6 +29,7 @@ const githubOrganization = new GithubOrganization({
     'ember-cli-tutorial-style',
     'ember-cli.github.io',
     'ember-core-dashboard',
+    'ember-data-request-service-cheat-sheet',
     'ember-help-wanted',
     'ember-help-wanted-backend',
     'ember-help-wanted-server',
