@@ -8,7 +8,7 @@ const githubOrganization = new GithubOrganization({
     'broccoli-dependency-funnel',
     'ember-asset-loader',
     'ember-engines',
-    'ember-engines.com',
+    'ember-engines-website',
     'engine-blueprint',
     'engine-testing',
   ],
