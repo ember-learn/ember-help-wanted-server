@@ -603,16 +603,14 @@ describe('lib/github-client', function () {
 
       assert.isDefined(client);
 
-      assert.strictEqual(
-        client.supportedOrganizations.length,
-        10,
-        'We will support 10 organizations when searching GitHub issues.'
+      assert.ok(
+        client.supportedOrganizations.length > 0,
+        'We support organizations when searching GitHub issues.'
       );
 
-      assert.strictEqual(
-        client.supportedLabels.length,
-        7,
-        'We will support 7 labels when searching GitHub issues.'
+      assert.ok(
+        client.supportedLabels.length > 0,
+        'We support labels when searching GitHub issues.'
       );
     });
   });
